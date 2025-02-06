@@ -1,0 +1,12 @@
+name: 亿赛通-电子文档安全管理系统-create_SmartSec_mysql信息泄露
+description: >-
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /CDGServer3/SQL/MYSQL/create_SmartSec_mysql.sql
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/x-sql

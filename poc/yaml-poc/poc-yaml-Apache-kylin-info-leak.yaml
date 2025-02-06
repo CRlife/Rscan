@@ -1,0 +1,11 @@
+name: Apache-kylin-配置信息泄露
+description: "CVE-2020-13937"
+matchCount: 1
+rules:
+  - method: GET
+    path: "/kylin/api/admin/config"
+    expression:
+      status: 200
+      body_all:
+        - "config"
+        - "kylin.metadata.url"

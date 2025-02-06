@@ -1,0 +1,15 @@
+name: 通达OA-meeting-unauthorized-access
+description: >-
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /general/calendar/arrange/get_cal_list.php?starttime=1548058874&endtime=33165447106&view=agendaDay
+    expression:
+      status: 200
+      headers:
+        Content-Type: json
+      body_all:
+        - "creator"
+        - "originalTitle"

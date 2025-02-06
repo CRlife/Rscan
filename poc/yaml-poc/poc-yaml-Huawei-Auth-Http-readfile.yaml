@@ -1,0 +1,11 @@
+name: 华为-Auth-Http-Server-readfile
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /umweb/shadow
+    expression:
+      status: 200
+      body_all: ["root:"]

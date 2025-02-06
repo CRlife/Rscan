@@ -1,0 +1,13 @@
+name: poc-yaml-Jenkins-find
+description: >
+  Jenkins登录发现
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: /login
+    expression:
+      status: 200
+      body_any:
+        - "[Jenkins]</title>"
+        - "X-Jenkins"    

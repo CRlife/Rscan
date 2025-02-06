@@ -1,0 +1,11 @@
+name: HIKVISION-综合安防管理平台-config.properties
+description: >
+  泄露密码信息
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /portal/conf/config.properties
+    expression:
+      status: 200
+      body_all: ["@bic.service"]   

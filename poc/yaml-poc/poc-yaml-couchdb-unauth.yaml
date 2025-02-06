@@ -1,0 +1,13 @@
+name: Apache-CouchDB数据库-未授权
+description: >
+  未授权
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /_config
+    expression:
+      status: 200
+      body_any:
+        - "httpd_design_handlers"
+        - "external_manager"   

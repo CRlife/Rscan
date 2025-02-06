@@ -1,0 +1,11 @@
+name: 致远OA-a8-未授权访问
+description: >-
+  配合弱口令WLCCYBD@SEEYON
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: /seeyon/management/index.jsp
+    expression:
+      status: 200
+      body_all: ["Management Monitor"]

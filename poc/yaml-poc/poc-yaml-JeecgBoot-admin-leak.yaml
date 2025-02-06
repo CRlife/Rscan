@@ -1,0 +1,14 @@
+name: JeecgBoot-敏感信息泄露
+description: >-
+  敏感信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /jeecg-boot/sys/user/querySysUser?username=admin
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/json
+      body_all:
+        - "success"

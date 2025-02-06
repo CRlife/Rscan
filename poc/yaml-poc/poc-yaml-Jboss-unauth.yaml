@@ -1,0 +1,13 @@
+name: poc-yaml-Jboss-unauth
+description: >
+  未授权访问
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: /jmx-console/
+    expression:
+      status: 200
+      body_all:
+        - "jboss.management.local"
+        - "jboss.web"  

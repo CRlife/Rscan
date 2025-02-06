@@ -1,0 +1,11 @@
+name: Apache-airflow未授权
+description: "未授权"
+matchCount: 1
+rules:
+  - method: GET
+    path: "/admin/"
+    expression:
+      status: 200
+      body_all:
+       - "<title>Airflow - DAGs</title>"
+       - "<h2>DAGs</h2>"   

@@ -1,0 +1,13 @@
+name: poc-yaml-Kafka-Manager-unauth
+description: >-
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /
+    follow_redirects: false
+    expression:
+      status: 200
+      body_any:
+        - "Kafka Manager"

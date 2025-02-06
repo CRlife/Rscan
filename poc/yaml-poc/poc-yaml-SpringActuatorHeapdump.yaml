@@ -1,0 +1,11 @@
+name: SpringActuatorHeapdump
+description: "可下载内存文件,文件中会包含大量敏感信息"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: HEAD
+    path: "/actuator/heapdump"
+    expression:
+      status: 200
+      headers:
+        Content-Type: "application/octet-stream"

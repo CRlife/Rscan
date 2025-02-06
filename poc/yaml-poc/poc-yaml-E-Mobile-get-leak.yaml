@@ -1,0 +1,11 @@
+name: 泛微E-Mobile-get-信息泄露
+description: >
+  敏感信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /;/emp/admin/license/get
+    expression:
+      status: 200
+      body_all: ["companyName"] 

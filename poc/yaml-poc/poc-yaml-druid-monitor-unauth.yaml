@@ -1,0 +1,13 @@
+name: Alibaba-Druid-monitor-unauth
+description: "Druid未授权"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: /druid/index.html
+    expression:
+      status: 200
+      body_any:
+        - "Druid Stat Index"
+        - "DruidVersion" 
+        - "DruidDrivers"         

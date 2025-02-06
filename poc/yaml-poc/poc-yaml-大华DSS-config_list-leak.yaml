@@ -1,0 +1,11 @@
+name: 大华DSS综合监控管理平台-config配置泄露
+description: >-
+  泄露FTP账户密码
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /admin/cascade_/config_list.action
+    expression:
+      status: 200
+      body_all: ["config-list"]

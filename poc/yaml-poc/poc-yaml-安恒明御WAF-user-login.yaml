@@ -1,0 +1,11 @@
+name: 安恒-web应用防火墙-任意用户登录
+description: >-
+  访问 /report.m?a=rpc-timed，接着删除路径，再次访问登录界面，访问路径：/system.m?a=reserved进入系统设置
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /report.m?a=rpc-timed
+    expression:
+      status: 200
+      body_all: ["error_0x110005"]

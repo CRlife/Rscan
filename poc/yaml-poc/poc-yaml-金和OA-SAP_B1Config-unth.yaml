@@ -1,0 +1,11 @@
+name: 金和OA-SAP_B1Config-未授权访问
+description: >-
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /C6/JHsoft.CostEAI/SAP_B1Config.aspx/?manage=1
+    expression:
+      status: 200
+      body_all: ["数据库服务器名"]

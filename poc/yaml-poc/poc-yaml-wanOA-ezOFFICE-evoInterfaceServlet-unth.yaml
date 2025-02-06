@@ -1,0 +1,11 @@
+name: 万户OA-ezOFFICE-evoInterfaceServlet-未授权访问
+description: >
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /defaultroot/evoInterfaceServlet?paramType=user
+    expression:
+      status: 200
+      body_all: ["userList"]  

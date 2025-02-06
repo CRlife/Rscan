@@ -1,0 +1,11 @@
+name: poc-yaml-thinkphp-3.x-日志泄露
+description: >-
+  日志泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /Application/Runtime/Logs/Home/{01_01_01}.log
+    expression:
+      status: 200
+      body_all: ["INFO"]

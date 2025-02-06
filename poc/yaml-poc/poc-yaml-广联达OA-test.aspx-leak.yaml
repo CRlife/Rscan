@@ -1,0 +1,11 @@
+name: 广联达OA-test.aspx接口信息泄露
+description: >-
+  泄露账户密码
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /Services/Identification/Server/test.aspx
+    expression:
+      status: 200
+      body_all: ["的ticket为"]

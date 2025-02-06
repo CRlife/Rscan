@@ -1,0 +1,11 @@
+name: poc-yaml-SonarQube-代码管理-auth
+description: >-
+  接口存在信息泄露漏洞可以获取部分敏感信息
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /api/settings/values
+    expression:
+      status: 200
+      body_all: ["value"]

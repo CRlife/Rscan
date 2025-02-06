@@ -1,0 +1,17 @@
+name: 大华智能物联综合管理平台-justForTest-账户登录
+description: >-
+  账户登录
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /evo-apigw/evo-oauth/oauth/token
+    headers:
+      Content-Type: text/xml  
+    body: >-
+      username=justForTest&password=1&grant_type=password&client_id=web_client&client_secret=web_client&public_key=
+    expression:
+      status: 200
+      body_all:
+        - "true"
+        - "access_token"

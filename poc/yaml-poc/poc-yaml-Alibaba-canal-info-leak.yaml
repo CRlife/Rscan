@@ -1,0 +1,9 @@
+name: Alibaba-Canal组件信息泄露
+description: "泄露secretKey"
+matchCount: 1
+rules:
+  - method: GET
+    path: "/api/v1/canal/config/1/1"
+    expression:
+      status: 200
+      body_all: ["ncanal.aliyun.secretKey"]   

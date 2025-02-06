@@ -1,0 +1,16 @@
+name: Docker-RemoteAPI-leak
+description: >
+  Docker-API-未授权RCE：https://www.freebuf.com/articles/container/344316.html
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: /info
+    follow_redirects: false
+    expression:
+      status: 200
+      headers:
+        Content-Type: "json"
+      body_all:
+        - "KernelVersion"
+        - "RegistryConfig"

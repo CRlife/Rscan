@@ -1,0 +1,11 @@
+name: poc-yaml-Node-Exporter-unauth
+description: >-
+  metrics接口信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /metrics
+    expression:
+      status: 200
+      body_all: ["go_gc"]

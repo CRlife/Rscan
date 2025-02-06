@@ -1,0 +1,11 @@
+name: Nacos指纹发现
+description: "指纹发现"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: /nacos/
+    expression:
+      status: 200
+      body_all:
+        - "<title>Nacos</title>"

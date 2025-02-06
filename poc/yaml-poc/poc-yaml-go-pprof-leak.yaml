@@ -1,0 +1,13 @@
+name: poc-yaml-go-pprof-leak
+description: "Go语言pprof包中的api信息泄露"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: "/debug/pprof/"
+    expression:
+      status: 200
+      body_all:
+        - "/debug/pprof/"
+        - "Types of profiles available"
+        - "goroutine"

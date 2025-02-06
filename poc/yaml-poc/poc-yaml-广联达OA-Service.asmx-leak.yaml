@@ -1,0 +1,11 @@
+name: 广联达OA-Service.asmx接口信息泄露
+description: >-
+  泄露账户密码MD5
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /Org/service/Service.asmx/GetUserXml4GEPS
+    expression:
+      status: 200
+      body_all: ["PWDMD5"]

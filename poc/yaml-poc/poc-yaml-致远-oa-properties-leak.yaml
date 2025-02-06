@@ -1,0 +1,11 @@
+name: 致远OA-properties-信息泄露
+description: >-
+  敏感信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /seeyon/rest/m3/common/system/properties
+    expression:
+      status: 200
+      body_all: ["m3.version"] 

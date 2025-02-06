@@ -1,0 +1,61 @@
+name: HIKVISION-综合安防管理平台-leak
+description: >
+  敏感信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /artemis-portal/artemis/env
+    expression:
+      status: 200
+      body_any:
+        - "database"
+        - "profiles"
+        - "processors"
+        - "levels"
+        - "/webjars/"
+        - "com.hikvision.artemis.ArtemisApplication"
+  - method: GET
+    path: /artemis-portal/artemis/metrics
+    expression:
+      status: 200
+      body_any:
+        - "database"
+        - "profiles"
+        - "processors"
+        - "levels"
+        - "/webjars/"
+        - "com.hikvision.artemis.ArtemisApplication"
+  - method: GET
+    path: /artemis-portal/artemis/loggers
+    expression:
+      status: 200
+      body_any:
+        - "database"
+        - "profiles"
+        - "processors"
+        - "levels"
+        - "/webjars/"
+        - "com.hikvision.artemis.ArtemisApplication"
+  - method: GET
+    path: /artemis-portal/artemis/health
+    expression:
+      status: 200
+      body_any:
+        - "database"
+        - "profiles"
+        - "processors"
+        - "levels"
+        - "/webjars/"
+        - "com.hikvision.artemis.ArtemisApplication"
+  - method: GET
+    path: /artemis/env
+    expression:
+      status: 200
+      body_any:
+        - "database"
+        - "profiles"
+        - "processors"
+        - "levels"
+        - "/webjars/"
+        - "com.hikvision.artemis.ArtemisApplication"

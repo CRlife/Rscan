@@ -1,0 +1,13 @@
+name: 泛微-EOffice-v9.5-userselectNew-信息泄露
+description: >
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /e-mobile/app/common/userselectNew/do.php
+    expression:
+      status: 200
+      body_any:
+        - "USER_ACCOUNTS"
+        - "USER_NAME"

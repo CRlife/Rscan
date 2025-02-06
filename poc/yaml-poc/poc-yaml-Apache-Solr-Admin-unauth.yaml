@@ -1,0 +1,12 @@
+name: poc-yaml-Apache-Solr-Admin-unauth
+description: "未授权访问"
+alwaysExecute: true
+matchCount: 1
+rules:
+  - method: GET
+    path: "/solr/admin/cores?indexInfo=false&wt=json"
+    expression:
+      status: 200
+      body_all:
+        - "name"
+        - "uptime"

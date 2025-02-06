@@ -1,0 +1,13 @@
+name: 致远OA-WEB-INF-源码泄露
+description: >-
+  源码泄露
+alwaysExecute: false
+matchCount: 1
+sleep: 4
+rules:
+  - method: GET
+    path: /seeyon/WEB-INF.rar
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/x-rar-compressed

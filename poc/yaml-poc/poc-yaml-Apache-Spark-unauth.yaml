@@ -1,0 +1,12 @@
+name: Apache-Spark-未授权访问
+description: ""
+matchCount: 1
+rules:
+  - method: GET
+    path: /
+    expression:
+      status: 200
+      body_any:
+        - "<title>Spark"
+        - "<strong>URL:</strong> spark:"
+        - "Spark Worker at"

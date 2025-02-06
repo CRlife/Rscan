@@ -1,0 +1,23 @@
+name: HashiCorp-Consul-api-rce
+description: >
+  api未授权导致RCE
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /v1/agent/self
+    expression:
+      status: 200
+      headers:
+        Content-Type: json
+      body_any: 
+        - "DisableRemoteExec\":false" 
+  - method: GET
+    path: /v1/agent/self
+    expression:
+      status: 200
+      headers:
+        Content-Type: json
+      body_any: 
+        - "EnableScriptChecks\":true"
+        - "EnableRemoteScriptChecks\":true"

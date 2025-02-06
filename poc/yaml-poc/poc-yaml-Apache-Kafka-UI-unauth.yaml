@@ -1,0 +1,13 @@
+name: poc-yaml-Kafka-UI-unauth
+description: >-
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /
+    follow_redirects: false
+    expression:
+      status: 200
+      body_all:
+        - "UI for Apache Kafka"

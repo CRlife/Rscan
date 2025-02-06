@@ -1,0 +1,11 @@
+name: poc-yaml-用友nc-BshServlet-cmd
+description: >-
+  代码执行
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /servlet/~ic/bsh.servlet.BshServlet
+    expression:
+      status: 200    
+      body_all: ["BeanShell"]
