@@ -75,7 +75,6 @@ dirscan -u http://www.example.com   #对单个url目录扫描
 
 
 
-ip.txt可以放域名或者ip，按行读取
 
 
 ## 免责声明
