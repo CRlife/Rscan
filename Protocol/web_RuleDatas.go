@@ -195,6 +195,7 @@ var RuleDatas = []RuleData{
 	{"红帆OA", "body", "(iOffice)"},
 	{"VMware-vSphere", "body", "<title>.*vSphere|ID_VC_Welcome|assets/getFlashPlayer.gif"},
 	{"VMware-vCenter", "body", "/support/pubs/converter_pubs.html|ID_Converter_Welcome"},
+	{"VMware-vRealize", "body", "<title>VMware vRealize Network Insight"},
 	{"VMware-Workspace One Access", "body", "/SAAS/horizon/images/vmware_logo.svg|/SAAS/horizon/js/util.message-strip|/SAAS/auth/login"},
 	{"打印机", "body", "(更换硒鼓|media/canon.gif|<title>*Brother*</title>|耗材商店|碳粉盒|耗材量严重不足时)"},
 	{"finereport", "body", "(isSupportForgetPwd|FineReport,Web Reporting Tool)"},

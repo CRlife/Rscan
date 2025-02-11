@@ -175,13 +175,11 @@ func executeRequest(URL string, config Config, wg *sync.WaitGroup) {
 		}
 
 		if resp.StatusCode != rule.Expression.Status && rule.Expression.Status != 0 { //状态码判断
-			//fmt.Println(errors.New(fmt.Sprintf("当前请求状态码为:%d,与yaml中%d不符!", resp.StatusCode, rule.Expression.Status)))
 			continue
 		}
 
 		if rule.Expression.DnslogCheck {
 			if !DnsLogCheck(domain, 3) {
-				//fmt.Println(errors.New(fmt.Sprintf("DNSlog请求失败")))
 				continue
 			}
 		}
@@ -189,11 +187,9 @@ func executeRequest(URL string, config Config, wg *sync.WaitGroup) {
 		for key, expectedValue := range rule.Expression.Headers {
 			actualValue := resp.Header.Get(key) // 获取实际的头部值
 			if actualValue == "" {
-				//fmt.Printf("响应中缺少头部 %s\n", key)
 				foundMissingHeader = false
 
 			} else if !strings.Contains(actualValue, expectedValue) {
-				//fmt.Printf("响应头 %s 的值不包含期望值 (实际: %s, 期望包含: %s)\n", key, actualValue, expectedValue) // 如果不包含，输出相关信息
 				foundMissingHeader = false
 			}
 		}
@@ -205,21 +201,18 @@ func executeRequest(URL string, config Config, wg *sync.WaitGroup) {
 
 		if len(rule.Expression.BodyALL) >= 1 {
 			if !allSubstringsPresent(strBody, rule.Expression.BodyALL) {
-				//fmt.Println(errors.New("返回body中不包含规定的任意数据！"))
 				continue
 			}
 		}
 
 		if len(rule.Expression.BodyAny) >= 1 {
 			if !anySubstringsPresent(strBody, rule.Expression.BodyAny) {
-				//fmt.Println(errors.New("返回body中不包含规定的所有数据！"))
 				continue
 			}
 		}
 
 		if rule.Expression.Time > 0 {
-			if elapsedtime < rule.Expression.Time { //实际请求如果小于规定的时间则不存在延迟注入
-				//fmt.Println(elapsedtime)
+			if elapsedtime < rule.Expression.Time {
 				continue
 			}
 		}
@@ -230,7 +223,7 @@ func executeRequest(URL string, config Config, wg *sync.WaitGroup) {
 			if os.Getenv("poc") == "on" {
 				fmt.Println(strBody, "\n---------------------")
 			}
-			flags := Flagcve{baseurl, config.Name, config.Description}
+			flags := Flagcve{URL, config.Name, config.Description}
 			echoFlag(flags)
 		}
 	}
@@ -322,7 +315,6 @@ func echoFlag(flag Flagcve) {
 }
 
 func decodeBase64IfNeeded(body string) (string, error) {
-	// 正则表达式匹配 "Base64Decode" 后跟 Base64 编码的数据
 	re := regexp.MustCompile(`Base64Decode\{([a-zA-Z0-9+/=]+)\}`)
 	matches := re.FindStringSubmatch(body)
 
@@ -334,9 +326,7 @@ func decodeBase64IfNeeded(body string) (string, error) {
 		if err != nil {
 			return body, err
 		}
-		// 替换原始字符串中的 Base64 编码部分为解码后的字符串
 		return re.ReplaceAllString(body, string(bodyBytes)), nil
 	}
-	// 如果没有找到Base64编码数据，直接返回原字符串
 	return body, nil
 }
