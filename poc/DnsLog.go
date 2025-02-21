@@ -16,6 +16,9 @@ import (
 type Dnslog struct {
 	CeyeApi    string `yaml:"ceyeApi"`
 	CeyeDomain string `yaml:"ceyeDomain"`
+	FofaEmail  string `yaml:"fofaEmail"`
+	FofaKey    string `yaml:"fofaKey"`
+	FofaSize   int    `yaml:"fofaSize"`
 }
 
 var (
@@ -44,6 +47,9 @@ func createConfigFile() {
 	config1 := Dnslog{
 		CeyeApi:    "", // 默认值为空
 		CeyeDomain: "", // 默认值为空
+		FofaEmail:  "",
+		FofaKey:    "",
+		FofaSize:   100,
 	}
 
 	data, err := yaml.Marshal(&config1)
@@ -58,7 +64,7 @@ func createConfigFile() {
 		os.Exit(1)
 	}
 
-	fmt.Println("配置文件config.yaml已创建，请填写 ceyeApi 和 ceyeDomain")
+	fmt.Println("配置文件config.yaml已创建")
 	os.Exit(0)
 }
 
@@ -76,6 +82,7 @@ func readConfigFile() (*Dnslog, error) {
 
 	return config, nil
 }
+
 func dnsLog() map[string]string {
 
 	letters := "1234567890abcdefghijklmnopqrstuvwxyz"

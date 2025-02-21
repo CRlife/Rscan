@@ -29,5 +29,6 @@ func init() {
 	ScanCmd.Flags().Bool("nopoc", false, "此参数是不进行poc漏洞扫描")
 	ScanCmd.Flags().StringP("userfile", "", "", "此参数是自定义用户字典文件")
 	ScanCmd.Flags().StringP("passwdfile", "", "", "此参数是自定义密码字典文件")
+	ScanCmd.Flags().StringP("fofa", "", "", "此参数根据fofa收集资产进行扫描,示例：body=\"test\"")
 	ScanCmd.Flags().StringP("proxy", "x", "", "设置http代理,格式：http://127.0.0.1:8080")
 }

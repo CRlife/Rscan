@@ -223,7 +223,12 @@ func executeRequest(URL string, config Config, wg *sync.WaitGroup) {
 			if os.Getenv("poc") == "on" {
 				fmt.Println(strBody, "\n---------------------")
 			}
-			flags := Flagcve{URL, config.Name, config.Description}
+			u, err := url.Parse(baseurl)
+			if err != nil {
+				return
+			}
+			u.RawQuery = ""
+			flags := Flagcve{u.String(), config.Name, config.Description}
 			echoFlag(flags)
 		}
 	}

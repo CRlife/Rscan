@@ -1,7 +1,9 @@
 package scan
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
+	"os"
 	"rscan/global"
 	"rscan/scan/crack"
 	"rscan/scan/proxy"
@@ -40,7 +42,6 @@ var (
 	userfile   string //user字典路径
 	passwdfile string //passwd字典路径
 	Proxy      string //代理地址
-
 )
 
 type INFO struct {
@@ -50,14 +51,22 @@ type INFO struct {
 }
 
 func ParseFlags(cmd *cobra.Command, args []string) {
-	ipFile, _ := cmd.Flags().GetString("ipfile") //读取ip文件
+	ipFile, _ := cmd.Flags().GetString("ipfile")
 	parseFileIP(ipFile)
 
-	urlFile, _ := cmd.Flags().GetString("urlfile") //读取url文件
+	urlFile, _ := cmd.Flags().GetString("urlfile")
 	if urlFile != "" {
 		parseFileURL(urlFile)
 	}
 
+	fofa, _ := cmd.Flags().GetString("fofa")
+	if fofa != "" {
+		err := parseFoFa(fofa)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(0)
+		}
+	}
 	ur, _ := cmd.Flags().GetString("url")
 
 	if ur != "" {
@@ -109,6 +118,9 @@ func ParseFlags(cmd *cobra.Command, args []string) {
 	}
 
 	if ip != "" || ipFile != "" {
+		scanPort()
+	}
+	if fofa != "" {
 		scanPort()
 	}
 

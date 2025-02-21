@@ -1,8 +1,14 @@
 package scan
 
 import (
+	"encoding/base64"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"gopkg.in/yaml.v2"
+	"io"
 	"net"
+	"net/http"
 	"os"
 	"regexp"
 	"rscan/global"
@@ -15,6 +21,18 @@ type FoFoData struct {
 	Err     bool       `json:"error"`
 	Results [][]string `json:"results"`
 }
+
+type FOFA struct {
+	FofaEmail string `yaml:"fofaEmail"`
+	FofaKey   string `yaml:"fofaKey"`
+	FofaSize  int    `yaml:"fofaSize"`
+}
+
+var (
+	fofaEmail string
+	fofaKey   string
+	fofaSize  int
+)
 
 // parseIP解析IP地址范围 支持：192.168.1.1-100、192.168.1.1/24、192.168.1.1、baidu.com、http://www.baidu.com
 func parseIP(ip string) {
@@ -37,7 +55,7 @@ func parseIP(ip string) {
 
 		//1、匹配CIDR子网掩码的地址 2、匹配IP 3、匹配第一个/之前的数据
 		reCIDR := regexp.MustCompile(`\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,2}\b`)
-		reIP := regexp.MustCompile(`\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b`)
+		reIP := regexp.MustCompile(`\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(-\d{1,3})?\b`)
 		matchCIDR := reCIDR.FindString(p)
 		if matchCIDR != "" {
 			p = matchCIDR
@@ -61,8 +79,8 @@ func parseIP(ip string) {
 		}
 
 		switch {
-		case strings.Contains(p, "-"): //起始-结束ip
-			matched := reIP.MatchString(p) //域名可能会包含-符号，则会处罚此规则则直接跳过了，此bug目前先留存
+		case strings.Contains(p, "-"):
+			matched := reIP.MatchString(p)
 			if !matched {
 				continue
 			}
@@ -92,8 +110,7 @@ func parseIP(ip string) {
 			for ipl := ipnet.IP.Mask(ipnet.Mask); ipnet.Contains(ipl); incrementIP(ipl) {
 				if len(ipl.To4()) == net.IPv4len {
 					lastByte := ipl.To4()[3]
-					if lastByte == 0 || lastByte == 255 { //起初0开头以及255结尾
-						continue
+					if lastByte == 0 || lastByte == 255 {
 					}
 				}
 				iplist = append(iplist, ipl.String())
@@ -101,7 +118,7 @@ func parseIP(ip string) {
 
 		default:
 			if net.ParseIP(p) == nil {
-				_, err := net.ResolveIPAddr("ip", p) //ip失败时判断是不是域名
+				_, err := net.ResolveIPAddr("ip", p)
 				if err != nil {
 					fmt.Println(err)
 					continue
@@ -145,4 +162,71 @@ func parseFileIP(path string) {
 		}
 	}
 	return
+}
+
+// 读取fofa数据
+func parseFoFa(cmd string) error {
+
+	// 读取配置文件
+	config, err := readConfigFile()
+	if err != nil {
+		fmt.Printf("读取配置文件失败: %v\n", err)
+		os.Exit(1)
+	}
+
+	fofaEmail = config.FofaEmail
+	fofaKey = config.FofaKey
+	fofaSize = config.FofaSize
+
+	if fofaEmail == "" || fofaKey == "" {
+		return errors.New("配置文件fofaEmail或fofaKey为空")
+	}
+	fofaSizeint, err := strconv.Atoi(strconv.Itoa(fofaSize))
+	if err != nil {
+		fofaSizeint = 100
+	}
+	if fofaSizeint > 10000 {
+		fofaSizeint = 10000
+	} else if fofaSizeint == 0 {
+		fofaSizeint = 100
+	}
+
+	url := fmt.Sprintf("https://fofa.info/api/v1/search/all?email=%s&key=%s&page=1&size=%d&qbase64=%s", fofaEmail, fofaKey, fofaSizeint, base64.StdEncoding.EncodeToString([]byte(cmd)))
+	res, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	body, _ := io.ReadAll(res.Body)
+	resfofa := &FoFoData{}
+	err = json.Unmarshal(body, resfofa)
+	if err != nil {
+		return err
+	}
+	if resfofa.Err {
+		return errors.New("请求fofa失败")
+	}
+	if len(resfofa.Results) == 0 {
+		return errors.New(fmt.Sprintf("[-] FOFA语句获取数据为空,调整一下吧！-》 %s", cmd))
+	}
+	portlist = []string{}
+	for _, v := range resfofa.Results {
+		iplist = append(iplist, v[1])
+		portlist = append(portlist, v[2])
+	}
+	return nil
+}
+
+func readConfigFile() (*FOFA, error) {
+	data, err := os.ReadFile("config.yaml")
+	if err != nil {
+		return nil, err
+	}
+
+	config := &FOFA{}
+	err = yaml.Unmarshal(data, config)
+	if err != nil {
+		return nil, err
+	}
+
+	return config, nil
 }
